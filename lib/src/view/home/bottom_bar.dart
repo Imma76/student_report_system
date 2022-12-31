@@ -12,6 +12,8 @@ class BottomNavBar extends ConsumerStatefulWidget {
 }
 
 class _BottomNavBarState extends ConsumerState<BottomNavBar> {
+  int currentIndex = 0;
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
@@ -19,7 +21,8 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
       bottomNavigationBar:BottomNavigationBar(
         currentIndex: currentIndex,
         items: [
-
+          BottomNavigationBarItem(icon: Icon(Icons.home),),
+          BottomNavigationBarItem(icon: Icon(Icons.home),)
         ],
       ),
     ));
