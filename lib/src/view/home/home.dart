@@ -23,25 +23,49 @@ class _HomePageState extends ConsumerState<HomePage> {
     final appTheme = ref.watch(themeProvider);
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: Container(
+          padding: EdgeInsets.all(10),
+          child: Text('Make a report'),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    StatusCards(appTheme: appTheme),   Gap(10),
+                    StatusCards(appTheme: appTheme),
+                  ],
+                ),
+                Gap(10),
+                Row(
+                  children: [
+                    StatusCards(appTheme: appTheme),   Gap(10),
+                    StatusCards(appTheme: appTheme),
+                  ],
+                ),
+                Gap(20),
+                Text('Recents',style: appTheme.textStyle,),
+                 Gap(20),
+                 ListView.builder(
+                   itemCount: 10,shrinkWrap: true,
+                   itemBuilder: (context,index) {
+                     return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Report submitted'),
+                          ),  Icon(Icons.report_outlined),
+                        ],
+                      );
+                   }
+                 ),
 
-            children: [
-              Row(
-                children: [
-                  StatusCards(appTheme: appTheme),   Gap(10),
-                  StatusCards(appTheme: appTheme),
-                ],
-              ),
-              Gap(10),
-              Row(
-                children: [
-                  StatusCards(appTheme: appTheme),   Gap(10),
-                  StatusCards(appTheme: appTheme),
-                ],
-              )
-            ],
+
+              ],
+            ),
           ),
         ),
       ),

@@ -7,6 +7,7 @@ import 'package:report_system/src/view/home/home.dart';
 
 import '../../utils/reusable widgets.dart';
 import '../../utils/status.dart';
+import '../home/bottom_bar.dart';
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp({
@@ -124,7 +125,7 @@ class _SignUpState extends ConsumerState<SignUp> {
           Gap(50),
           ElevatedButton(
             onPressed: () async {
-              Navigator.pushNamed(context, HomePage.route);
+              Navigator.pushNamed(context, BottomNavBar.route);
               // if its from sign up
               // if (!signInController1.signinIn) {
               // user needs to accept the privacy policy
