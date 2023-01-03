@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 
+import '../../utils/reusable widgets.dart';
+
 
 class ReportForm extends ConsumerStatefulWidget {
   static const route = 'report_form';
@@ -66,18 +68,5 @@ class _ReportFormState extends ConsumerState<ReportForm> {
         )
       ),
     );
-  }
-}
-
-class TextFieldWidget extends StatelessWidget {
-  final String? hintText;
-  final TextEditingController? textController;
-  const TextFieldWidget({
-    Key? key,this.hintText,this.textController,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(decoration: InputDecoration(hintText: hintText),controller: textController,);
   }
 }
