@@ -4,7 +4,9 @@ import 'package:flutter/widgets.dart';
 
 class ReportController extends ChangeNotifier{
   bool isAnonymous = false;
-  changeReportVisibility(){
-    //isAno
+  changeReportVisibility(bool newValue){
+    isAnonymous = newValue;
+    notifyListeners();
+
   }
 }

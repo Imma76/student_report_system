@@ -39,6 +39,7 @@ dependencies:
   gap: ^2.0.1
   flutter_riverpod:
   modal_bottom_sheet:
+  file_picker:
   google_fonts:
   liquid_progress_indicator:
 

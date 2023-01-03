@@ -16,7 +16,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Column(children: [
-
+      Center(child: Text('Report Form',))
     ],),);
   }
 }
