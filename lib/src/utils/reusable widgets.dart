@@ -52,6 +52,6 @@ class MediaPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,);
+    return Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey.shade300,);
   }
 }

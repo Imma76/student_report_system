@@ -38,31 +38,39 @@ class _HomePageState extends ConsumerState<HomePage> {
           },
           child: Container(
             padding: EdgeInsets.all(10),
-            child: const Text('Make a report'),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
+            child:  Text('Make a report',style: appTheme.textStyle.copyWith(color:white),),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    StatusCards(appTheme: appTheme),   Gap(10),
-                    StatusCards(appTheme: appTheme),
-                  ],
-                ),
-                Gap(10),
-                Row(
-                  children: [
-                    StatusCards(appTheme: appTheme),   Gap(10),
-                    StatusCards(appTheme: appTheme),
-                  ],
-                ),
-                Gap(20),
-                Text('Recents',style: appTheme.textStyle,),
-                 Gap(20),
-                 ListView.builder(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 200,
+                
+                decoration: BoxDecoration(  color: primaryColor,borderRadius: BorderRadius.only(bottomLeft:Radius.circular(10),bottomRight: Radius.circular(10))),
+              ),
+              // Row(
+              //   children: [
+              //     StatusCards(appTheme: appTheme),   Gap(10),
+              //     StatusCards(appTheme: appTheme),
+              //   ],
+              // ),
+              // Gap(10),
+              // Row(
+              //   children: [
+              //     StatusCards(appTheme: appTheme),   Gap(10),
+              //     StatusCards(appTheme: appTheme),
+              //   ],
+              // ),
+              Gap(20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Recents',style: appTheme.textStyle,),
+              ),
+               Gap(20),
+               Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: ListView.builder(
                    itemCount: 10,shrinkWrap: true,
                    itemBuilder: (context,index) {
                      return Row(
@@ -76,10 +84,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                       );
                    }
                  ),
+               ),
 
 
-              ],
-            ),
+            ],
           ),
         ),
       ),
@@ -104,7 +112,7 @@ class StatusCards extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Total reports submitted  0',style: appTheme.textStyle.copyWith(fontWeight: FontWeight.bold,fontSize: 17),),
+            Text('Total reports submitted  0',style: appTheme.textStyle.copyWith(fontWeight: FontWeight.bold,fontSize: 17,color: Colors.white),),
 
           ],
         ),
