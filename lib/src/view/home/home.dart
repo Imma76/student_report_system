@@ -5,6 +5,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/app_theme.dart';
 import 'package:report_system/src/utils/colors.dart';
+import 'package:report_system/src/view/reports/report_form.dart';
 
 
 class HomePage extends ConsumerStatefulWidget {
@@ -26,13 +27,14 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Scaffold(
         floatingActionButton: GestureDetector(
           onTap: (){
-            showCupertinoModalBottomSheet(context: context, builder: (context){
-              return Scaffold(
-                body: Container(height:500, child: Column(children: [
-                  Center(child: Text('Report Form',))
-                ],),),
-              );
-            });
+            Navigator.pushNamed(context, ReportForm.route);
+            // showCupertinoModalBottomSheet(context: context, builder: (context){
+            //   return Scaffold(
+            //     body: Container(height:500, child: Column(children: [
+            //       Center(child: Text('Report Form',))
+            //     ],),),
+            //   );
+            // });
           },
           child: Container(
             padding: EdgeInsets.all(10),
