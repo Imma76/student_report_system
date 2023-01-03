@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:report_system/src/providers/all_providers.dart';
+import 'package:report_system/src/utils/colors.dart';
 
 import '../../utils/reusable widgets.dart';
 
@@ -40,8 +41,10 @@ class _ReportFormState extends ConsumerState<ReportForm> {
 
               maxLines: 5,
               decoration: InputDecoration(
+                enabledBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+                focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
                 hintText: 'Brief explanation of abuse',
-              border: OutlineInputBorder(borderSide: BorderSide()),
+              border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
             ),),
             Row(
               children: [
@@ -56,8 +59,11 @@ class _ReportFormState extends ConsumerState<ReportForm> {
               child: Column(
                 children: [
                   TextFieldWidget(hintText: 'email',),
+                  Gap(10),
                   TextFieldWidget(hintText: 'regNo',),
+                  Gap(10),
                   TextFieldWidget(hintText: 'name',),
+                  Gap(10),
                   TextFieldWidget(hintText: 'current level',),
                 ],
               ),

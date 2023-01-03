@@ -9,6 +9,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 class TextFieldWidget extends StatelessWidget {
   final String? hintText;
   final TextEditingController? textController;
@@ -18,6 +20,26 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(decoration: InputDecoration(hintText: hintText),controller: textController,);
+    return TextField(
+
+      decoration: InputDecoration(hintText: hintText,
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+            //  when the TextFormField in unfocused
+          ) ,
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: primaryColor),
+            //  when the TextFormField in focused
+          ) ,
+          border: UnderlineInputBorder(
+          )
+
+     // enabledBorder: OutlineInputBorder(
+     //
+     //     //borderSide: BorderSide( color: primaryColor)
+     // )
+     // focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+    ),
+      controller: textController,);
   }
 }

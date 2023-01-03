@@ -21,6 +21,7 @@ class AppTheme extends ChangeNotifier {
 // Define the default font family.
       fontFamily: 'Lora',
 accentColor: primaryColor,
+      //hintColor: primaryColor,
 
 // Define the default `TextTheme`. Use this to specify the default
 // text styling for headlines, titles, bodies of text, and more.
