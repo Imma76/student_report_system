@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:report_system/src/providers/all_providers.dart';
@@ -5,11 +6,12 @@ import 'package:report_system/src/routes/routes.dart';
 import 'package:report_system/src/view/onboarding.dart';
 
 void main()async {
-  //await Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(const ProviderScope(child:  MyApp()));
 }
 
 
+final botToastBuilder = BotToastInit();
 class MyApp extends ConsumerStatefulWidget {
   const MyApp({
     Key? key,
