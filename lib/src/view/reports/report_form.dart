@@ -51,7 +51,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
               ),),
                 Gap(10),
                 Text('Attach photos',style: appTheme.textStyle),
-                Gap(5),
+                Gap(10),
                 Row(
                   children: [
                     MediaPicker(onTap: (){
@@ -59,7 +59,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                     },),
                     Expanded(
                       child: Container(
-                        height: 60,
+                        height: 80,
                         child: ListView.builder(
 
                             shrinkWrap: true,
@@ -68,7 +68,19 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                             itemBuilder: (context,index){
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Container(height: 50, width:50,color: Colors.red,child: Image.file(reportController.imageFiles[index]),),
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                    onTap:(){
+                                reportController.imageFiles.removeAt(index);
+                                setState(() {
+
+                                });
+                                },
+                                    child: Icon(Icons.cancel,size: 10,)),
+                                Container(height: 50, width:50,child: Image.file(reportController.imageFiles[index]),),
+                              ],
+                            ),
                           );
                         }),
                       ),
@@ -78,15 +90,80 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 Gap(10),
                 Text('Attach videos',style: appTheme.textStyle),
                 Gap(5),
-                MediaPicker(onTap: (){
-                  reportController.pickVideos();
-                },),
+                Row(
+                  children: [
+                    MediaPicker(onTap: (){
+                      reportController.pickVideos();
+                    },
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 80,
+                        child: ListView.builder(
+
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: reportController.videoFiles.length,
+                            itemBuilder: (context,index){
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                        onTap:(){
+                                          reportController.videoFiles.removeAt(index);
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: Icon(Icons.cancel,size: 10,)),
+                                    Container(height: 50, width:50,child: Image.file(reportController.videoFiles[index]),),
+                                  ],
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+                  ],
+                ),
                 Gap(10),
                 Text('Attach audios',style: appTheme.textStyle),
                 Gap(5),
-                MediaPicker(onTap: (){
-                  reportController.pickAudios();
-                },),
+                Row(
+                  children: [
+                    MediaPicker(onTap: (){
+                      reportController.pickAudios();
+                    },),
+                    Expanded(
+                      child: Container(
+                        height: 80,
+                        child: ListView.builder(
+
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: reportController.audioFiles.length,
+                            itemBuilder: (context,index){
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                        onTap:(){
+                                          reportController.audioFiles.removeAt(index);
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: Icon(Icons.cancel,size: 10,)),
+                                    Container(height: 50, width:50,child: Image.file(reportController.audioFiles[index]),),
+                                  ],
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                 children: [
                   Text('Send report anonymously', style: appTheme.textStyle,),Spacer(),
@@ -114,9 +191,9 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 color: primaryColor,
                 height: 50,
                 minWidth: double.infinity,
-                child: Text('Submit',style: appTheme.textStyle.copyWith(color: Colors.white),), )
+                child: Text('Submit',style: appTheme.textStyle.copyWith(color: Colors.white),), ),
 
-
+                Gap(20),
             ],),
           ),
         )
