@@ -33,44 +33,66 @@ class _ReportFormState extends ConsumerState<ReportForm> {
 
         body:Padding(
           padding: const EdgeInsets.only(left:12.0,right: 12),
-          child: Column(children: [
-            Gap(30),
-            Center(child: Text('Abuse Form',style: appTheme.textStyle,)),
-            Gap(30),
-            TextField(
-
-              maxLines: 5,
-              decoration: InputDecoration(
-                enabledBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
-                focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
-                hintText: 'Brief explanation of abuse',
-              border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
-            ),),
-            Row(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Send report anonymously', style: appTheme.textStyle,),Spacer(),
-                Switch(value: reportController.isAnonymous, onChanged: (value){
-                  reportController.changeReportVisibility(value);
-                }),
-              ],
-            ),
-            Visibility(
-              visible: reportController.isAnonymous,
-              child: Column(
+              Gap(30),
+              Center(child: Text('Abuse Form',style: appTheme.textStyle,)),
+              Gap(30),
+              TextField(
+
+                maxLines: 5,
+                decoration: InputDecoration(
+                  enabledBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+                  focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+                  hintText: 'Brief explanation of abuse',
+                border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+              ),),
+                Gap(10),
+                Text('Attach photos',style: appTheme.textStyle),
+                Gap(5),
+                Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,),
+                Gap(10),
+                Text('Attach videos',style: appTheme.textStyle),
+                Gap(5),
+                Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,),
+                Gap(10),
+                Text('Attach audios',style: appTheme.textStyle),
+                Gap(5),
+                Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,),
+                Row(
                 children: [
-                  TextFieldWidget(hintText: 'email',),
-                  Gap(10),
-                  TextFieldWidget(hintText: 'regNo',),
-                  Gap(10),
-                  TextFieldWidget(hintText: 'name',),
-                  Gap(10),
-                  TextFieldWidget(hintText: 'current level',),
+                  Text('Send report anonymously', style: appTheme.textStyle,),Spacer(),
+                  Switch(value: reportController.isAnonymous, onChanged: (value){
+                    reportController.changeReportVisibility(value);
+                  }),
                 ],
               ),
-            ),
+                Visibility(
+                visible: !reportController.isAnonymous,
+                child: Column(
+                  children: [
+                    TextFieldWidget(hintText: 'email',),
+                    Gap(10),
+                    TextFieldWidget(hintText: 'regNo',),
+                    Gap(10),
+                    TextFieldWidget(hintText: 'name',),
+                    Gap(10),
+                    TextFieldWidget(hintText: 'current level',),
+                  ],
+                ),
+              ),
+              Gap(30),
+              FlatButton(onPressed: (){},
+                color: primaryColor,
+                height: 50,
+                minWidth: double.infinity,
+                child: Text('Submit',style: appTheme.textStyle.copyWith(color: Colors.white),), )
 
 
-          ],),
+            ],),
+          ),
         )
       ),
     );
