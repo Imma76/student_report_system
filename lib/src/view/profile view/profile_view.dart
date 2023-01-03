@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 class ProfileView extends ConsumerStatefulWidget {
+  static const route = 'profileview';
   const ProfileView({
     Key? key,
   }) : super(key: key);
@@ -14,6 +15,8 @@ class ProfileView extends ConsumerStatefulWidget {
 class _ProfileViewState extends ConsumerState<ProfileView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(body: Column(children: [
+
+    ],),);
   }
 }

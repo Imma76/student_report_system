@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/app_theme.dart';
 import 'package:report_system/src/utils/colors.dart';
@@ -23,9 +24,20 @@ class _HomePageState extends ConsumerState<HomePage> {
     final appTheme = ref.watch(themeProvider);
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: Container(
-          padding: EdgeInsets.all(10),
-          child: const Text('Make a report'),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
+        floatingActionButton: GestureDetector(
+          onTap: (){
+            showCupertinoModalBottomSheet(context: context, builder: (context){
+              return Scaffold(
+                body: Container(height:500, child: Column(children: [
+                  Center(child: Text('Report Form',))
+                ],),),
+              );
+            });
+          },
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: const Text('Make a report'),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
