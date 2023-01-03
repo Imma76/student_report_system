@@ -25,7 +25,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Scaffold(
         floatingActionButton: Container(
           padding: EdgeInsets.all(10),
-          child: Text('Make a report'),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
+          child: const Text('Make a report'),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -56,7 +56,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text('Report submitted'),
+                            child: Text('Report submitted', style: appTheme.textStyle,),
                           ),  Icon(Icons.report_outlined),
                         ],
                       );

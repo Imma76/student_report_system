@@ -22,14 +22,15 @@ class _SettingsState extends ConsumerState<Settings> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+         // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Center(child: CircleAvatar(radius: 50,)),
+            //Center(child: CircleAvatar(radius: 50,)),
+            Gap(30),
             Padding(
               padding: const EdgeInsets.only(left:8.0),
-              child: Text('Settings',style:apptheme.textStyle.copyWith(fontSize: 20),),
+              child: Text('Settings',style:apptheme.textStyle.copyWith(fontSize: 25,fontWeight: FontWeight.bold),),
             ),
             Gap(50),
             SettingsTab(settingIcon: Icons.person_outline,settingsName: 'Profile',appTheme: apptheme,),
