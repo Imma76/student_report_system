@@ -46,7 +46,7 @@ class _SettingsState extends ConsumerState<Settings> {
               ],
             ),
           ),
-          Gap(50),
+          Gap(30),
 
           SettingsTab(settingIcon: Icons.person_outline,settingsName: 'Profile',appTheme: apptheme,),
           Gap(20),

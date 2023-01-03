@@ -38,6 +38,7 @@ dependencies:
   country_code_picker: ^2.0.2
   gap: ^2.0.1
   flutter_riverpod:
+  modal_bottom_sheet:
   google_fonts:
   liquid_progress_indicator:
 
