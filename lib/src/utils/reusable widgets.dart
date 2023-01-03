@@ -46,12 +46,15 @@ class TextFieldWidget extends StatelessWidget {
 
 class MediaPicker extends StatelessWidget {
   final String? identifier;
+  final Function()? onTap;
   const MediaPicker({
-    Key? key,this.identifier
+    Key? key,this.identifier,this.onTap
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey.shade300,);
+    return GestureDetector(
+        onTap: onTap,
+        child: Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey.shade300,));
   }
 }

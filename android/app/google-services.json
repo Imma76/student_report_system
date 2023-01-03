@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "452041305778",
+    "project_id": "report-system-8d623",
+    "storage_bucket": "report-system-8d623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452041305778:android:f9aa14ff3f07e1bc60a3ab",
+        "android_client_info": {
+          "package_name": "com.example.report_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452041305778-v86v2i2feqt0orsqvsi68rt5hgv4be1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkaGkk8fYZRU0EST_7f-GuuCkAf-OJrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452041305778-v86v2i2feqt0orsqvsi68rt5hgv4be1u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "452041305778-o3e8qil7s280dp3d220co4p5gvcrc11n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.report.system"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452041305778:android:e72da1db70f126c560a3ab",
+        "android_client_info": {
+          "package_name": "com.report.system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452041305778-v86v2i2feqt0orsqvsi68rt5hgv4be1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkaGkk8fYZRU0EST_7f-GuuCkAf-OJrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452041305778-v86v2i2feqt0orsqvsi68rt5hgv4be1u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "452041305778-o3e8qil7s280dp3d220co4p5gvcrc11n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.report.system"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -52,15 +52,41 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 Gap(10),
                 Text('Attach photos',style: appTheme.textStyle),
                 Gap(5),
-                MediaPicker(),
+                Row(
+                  children: [
+                    MediaPicker(onTap: (){
+                       reportController.pickImage();
+                    },),
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        child: ListView.builder(
+
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: reportController.imageFiles.length,
+                            itemBuilder: (context,index){
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(height: 50, width:50,color: Colors.red,child: Image.file(reportController.imageFiles[index]),),
+                          );
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
                 Gap(10),
                 Text('Attach videos',style: appTheme.textStyle),
                 Gap(5),
-                MediaPicker(),
+                MediaPicker(onTap: (){
+                  reportController.pickVideos();
+                },),
                 Gap(10),
                 Text('Attach audios',style: appTheme.textStyle),
                 Gap(5),
-                MediaPicker(),
+                MediaPicker(onTap: (){
+                  reportController.pickAudios();
+                },),
                 Row(
                 children: [
                   Text('Send report anonymously', style: appTheme.textStyle,),Spacer(),

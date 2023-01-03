@@ -30,8 +30,6 @@ class Reports{
     data['imageUrls'] = imageUrls;
     data['videoUrls']= videoUrls;
     data['audioUrls'] = audioUrls;
-
-
   }
 
 }

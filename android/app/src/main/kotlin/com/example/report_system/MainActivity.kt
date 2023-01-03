@@ -1,4 +1,4 @@
-package com.example.report_system
+package com.report.system
 
 import io.flutter.embedding.android.FlutterActivity
 
