@@ -52,15 +52,15 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 Gap(10),
                 Text('Attach photos',style: appTheme.textStyle),
                 Gap(5),
-                Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,),
+                MediaPicker(),
                 Gap(10),
                 Text('Attach videos',style: appTheme.textStyle),
                 Gap(5),
-                Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,),
+                MediaPicker(),
                 Gap(10),
                 Text('Attach audios',style: appTheme.textStyle),
                 Gap(5),
-                Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey,),
+                MediaPicker(),
                 Row(
                 children: [
                   Text('Send report anonymously', style: appTheme.textStyle,),Spacer(),
@@ -98,3 +98,4 @@ class _ReportFormState extends ConsumerState<ReportForm> {
     );
   }
 }
+
