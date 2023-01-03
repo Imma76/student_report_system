@@ -6,7 +6,8 @@ import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/routes/routes.dart';
 import 'package:report_system/src/view/onboarding.dart';
 
-void main()async {
+Future<void> main()async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const ProviderScope(child:  MyApp()));
 }
