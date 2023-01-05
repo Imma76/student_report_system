@@ -11,6 +11,12 @@ class SignUpController extends ChangeNotifier{
   String? countryCode;
   String? verificationCode;
   bool otpSent = false;
+  String otp='';
+
+  void onOtpChange(val){
+    otp = val;
+    notifyListeners();
+  }
 
 
   void smsOTPSent(String verId, [int? forceCodeResend]) async {
@@ -18,6 +24,8 @@ class SignUpController extends ChangeNotifier{
     verificationCode = verId;
     debugPrint("Verififcation Code");
     debugPrint(verificationCode);
+    otpStatus = Status.success;
+    notifyListeners();
 
     //_showOTPScreen();
   }
@@ -49,6 +57,7 @@ class SignUpController extends ChangeNotifier{
             FocusManager.instance.primaryFocus?.unfocus();
             otpStatus = Status.success;
             otpSent = true;
+            notifyListeners();
           },
           verificationFailed: (FirebaseAuthException exception) {
             if (exception.code == 'invalid-phone-number') {

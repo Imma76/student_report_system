@@ -7,6 +7,7 @@
 //     );
 
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
@@ -58,3 +59,10 @@ class MediaPicker extends StatelessWidget {
         child: Container(height:50, width:50,child: Icon(Icons.add),color: Colors.grey.shade300,));
   }
 }
+
+
+void showToast(message, {duration = const Duration(seconds: 3)}) =>
+    BotToast.showText(
+      text: message,
+      duration: duration,
+    );

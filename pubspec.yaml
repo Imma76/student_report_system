@@ -39,6 +39,8 @@ dependencies:
   country_code_picker: ^2.0.2
   gap: ^2.0.1
   flutter_riverpod:
+
+  pin_code_fields:
   modal_bottom_sheet:
   bot_toast:
   file_picker:

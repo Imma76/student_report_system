@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:report_system/src/providers/all_providers.dart';
-import 'package:report_system/src/view/home/home.dart';
+import 'package:report_system/src/view/authentication/otp_screen.dart';
 
+import '../../utils/colors.dart';
 import '../../utils/reusable widgets.dart';
 import '../../utils/status.dart';
-import '../home/bottom_bar.dart';
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp({
@@ -29,11 +29,12 @@ class _SignUpState extends ConsumerState<SignUp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-  //  final signUpController = ref.read(signUpPovider);
+    final signUpController = ref.read(signUpPovider);
   }
   @override
   Widget build(BuildContext context) {
-   // final signUpController = ref.watch(signUpPovider);
+    final signUpController = ref.watch(signUpPovider);
+    final appProvider= ref.watch(themeProvider);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -125,51 +126,41 @@ class _SignUpState extends ConsumerState<SignUp> {
           Gap(50),
           ElevatedButton(
             onPressed: () async {
-              Navigator.pushNamed(context, BottomNavBar.route);
               // if its from sign up
-              // if (!signInController1.signinIn) {
-              // user needs to accept the privacy policy
+
+              //user needs to accept the privacy policy
 
                 // if (signUpController.otpStatus != Status.loading) {
-                //   // await signUpController.verifyPhoneNumber(
-                //   //     context: context);
+                //   await signUpController.verifyPhoneNumber(
+                //       context: context);
                 // } else {
                 //   showToast(signUpController.otpStatus);
                 // }
 
-              // } else {
-              //   // else just sign in
-              //   if (signInController.otpStatus != Status.loading) {
-              //     await signInController.verifyPhoneNumber(
-              //         context: context);
-              //   } else {
-              //     showToast(tr(Keys.loading));
-              //   }
-              // }
+              Navigator.pushNamed(context, OtpScreen.route);
+
+
             },
             child:
-    //(
-            //     signUpController.otpStatus != Status.loading
-            // )
-             //   ?
+    (
+                signUpController.otpStatus != Status.loading
+            )
+               ?
             Text('Enter',
-                style: TextStyle(
-                    fontFamily: "Montserrat",
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                    ),
-                textAlign: TextAlign.center),
-                // : const SizedBox(
-                // height: 20,
-                // width: 20,
-                // child: Center(
-                //   child: CircularProgressIndicator(
-                //     strokeWidth: 2,
-                //   //  color: AppTheme.white,
-                //   ),
-                // )),
+                style:appProvider.textStyle.copyWith(fontWeight: FontWeight.bold,),
+                textAlign: TextAlign.center)
+                : const SizedBox(
+                height: 20,
+                width: 20,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                  //  color: AppTheme.white,
+                  ),
+                )),
             style: ElevatedButton.styleFrom(
-             //   primary: Theme.of(context).,
+                primary: primaryColor,
+
                 minimumSize: Size(130, 55),
                 maximumSize: Size(130, 55),
                 fixedSize: Size(130, 55)),
