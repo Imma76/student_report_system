@@ -28,10 +28,15 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
     final signUpController = ref.watch(signUpPovider);
     final appProvider= ref.watch(themeProvider);
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.transparent,elevation: 0.0,leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){
+        Navigator.pop(context);
+      },),),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text('Input the otp sent to your mobile number',style:appProvider.textStyle.copyWith(fontSize:15)),
+          Gap(30),
           Center(
             child: OTPField(
               onChanged: signUpController.onOtpChange,

@@ -16,7 +16,8 @@ class AppTheme extends ChangeNotifier {
       ),
 // Define the default brightness and colors.
       brightness: Brightness.light,
-      primaryColor: Colors.lightBlue[800],
+      primaryColor: primaryColor,
+
 
 // Define the default font family.
       fontFamily: 'Lora',
