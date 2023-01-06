@@ -32,10 +32,7 @@ class ReportController extends ChangeNotifier{
       final pickedImageFiles = await _picker.pickMultiImage(
         // source: ImageSource.gallery,
       );
-      // FilePickerResult? result = await FilePicker.platform.pickFiles(
-      //   allowMultiple: true,
-      //   allowedExtensions: ['jpg', 'mp4', 'mkv', ''],
-      // );
+    
 
 
       if (pickedImageFiles!.isNotEmpty) {

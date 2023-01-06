@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/app_theme.dart';
 import 'package:report_system/src/utils/colors.dart';
@@ -223,22 +225,44 @@ class _HomePageState extends ConsumerState<HomePage> {
             children: [
               Container(
                 height: 200,
-                
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Total report submitted',style: appTheme.textStyle,),
+                        Gap(20),
+                        CircularPercentIndicator(
+                          radius: 40.0,
+                          lineWidth: 5.0,
+
+                          percent: 0.5,
+                          center: new Text("100"),
+                          progressColor: Colors.green,
+                        ),
+                      ],
+                    ),
+                //   CircleAvatar(
+                //     radius:50,
+                //     child: LiquidCircularProgressIndicator(
+                //     value: 50, // Defaults to 0.5.
+                //     valueColor: AlwaysStoppedAnimation(Colors.pink), // Defaults to the current Theme's accentColor.
+                //     backgroundColor: Colors.white, // Defaults to the current Theme's backgroundColor.
+                //     borderColor: Colors.red,
+                //     borderWidth: 5.0,
+                //
+                //     direction: Axis.vertical, // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
+                //     center: Text("50",style: appTheme.textStyle.copyWith(color:Colors.black),),
+                // ),
+                //   ),
+                  ],
+                ),
                 decoration: BoxDecoration(  color: primaryColor,borderRadius: BorderRadius.only(bottomLeft:Radius.circular(10),bottomRight: Radius.circular(10))),
               ),
-              // Row(
-              //   children: [
-              //     StatusCards(appTheme: appTheme),   Gap(10),
-              //     StatusCards(appTheme: appTheme),
-              //   ],
-              // ),
-              // Gap(10),
-              // Row(
-              //   children: [
-              //     StatusCards(appTheme: appTheme),   Gap(10),
-              //     StatusCards(appTheme: appTheme),
-              //   ],
-              // ),
+
               Gap(20),
               Padding(
                 padding: const EdgeInsets.all(8.0),
