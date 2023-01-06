@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:report_system/src/controllers/central_state.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/routes/routes.dart';
+import 'package:report_system/src/view/home/bottom_bar.dart';
 import 'package:report_system/src/view/onboarding.dart';
 
 
@@ -48,7 +49,7 @@ class _MyAppState extends ConsumerState<MyApp> {
 
       title: 'Flutter Demo',
       theme: appThemeProvider.isDark? appThemeProvider.darkTheme:appThemeProvider.lightTheme,
-      home:  OnBoardingPage(),
+      home: NavigatorApp(),
         builder: BotToastInit(),
 
     );
@@ -70,10 +71,16 @@ class _NavigatorAppState extends ConsumerState<NavigatorApp> {
     // TODO: implement initState
     super.initState();
     final centralProvider= ref.read(centralStateProvider);
+    centralProvider.initializeApp();
   }
   @override
   Widget build(BuildContext context) {
-
-    return Container();
+    final centralProvider= ref.watch(centralStateProvider);
+    print(centralProvider.isUserPresent);
+    if(centralProvider.isUserPresent){
+      return BottomNavBar();
+    }else{
+      return OnBoardingPage();
+    }
   }
 }

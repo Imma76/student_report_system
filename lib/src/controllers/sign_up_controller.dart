@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:report_system/src/utils/status.dart';
 import 'package:report_system/src/view/authentication/sign_up.dart';
+import 'package:report_system/src/view/home/bottom_bar.dart';
 
 import '../../main.dart';
 import '../utils/error_codes.dart';
@@ -46,7 +47,9 @@ class SignUpController extends ChangeNotifier{
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
     if (phoneNumber.length < 8 || phoneNumber.length > 10) {
+
       showToast('Invalid phone No');
+      return;
     } else {
       otpStatus = Status.loading;
       notifyListeners();
@@ -119,6 +122,7 @@ class SignUpController extends ChangeNotifier{
     if (user.phoneNumber == null || user.phoneNumber == '') {
       navigatorKey.currentState!.pushNamed(SignUp.route);
     } else {
+      navigatorKey.currentState!.pushNamed(BottomNavBar.route);
       // print(user.email);
       // if (user.email != null) {
       //   int _response =
