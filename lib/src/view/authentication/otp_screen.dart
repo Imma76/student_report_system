@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:report_system/src/providers/all_providers.dart';
+import 'package:report_system/src/view/home/bottom_bar.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/status.dart';
@@ -23,6 +24,10 @@ class OtpScreen extends ConsumerStatefulWidget {
 }
 
 class _OtpScreenState extends ConsumerState<OtpScreen> {
+
+  refreshAccount() async {
+    setState(() {});
+  }
   @override
   Widget build(BuildContext context) {
     final signUpController = ref.watch(signUpPovider);
@@ -49,6 +54,9 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
           Gap(30),
           ElevatedButton(
             onPressed: () async {
+              await signUpController.signIn(
+                  context: context, callBack: refreshAccount);
+
               // if its from sign up
 
               //user needs to accept the privacy policy
@@ -60,13 +68,13 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
               //   showToast(signUpController.otpStatus);
               // }
 
-              Navigator.pushNamed(context, OtpScreen.route);
+              Navigator.pushNamed(context, BottomNavBar.route);
 
 
             },
             child:
             (
-                signUpController.otpStatus != Status.loading
+                signUpController.loginStatus != Status.loading
             )
                 ?
             Text('Verify',
@@ -139,7 +147,7 @@ class _OTPFieldState extends State<OTPField> {
         obscureText: false,
         cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
         animationType: AnimationType.fade,
-        textStyle: Theme.of(context).textTheme.headline2,
+        textStyle: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 15),
         pinTheme: PinTheme(
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(5),

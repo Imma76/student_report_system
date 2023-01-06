@@ -10,6 +10,7 @@ import '../../utils/reusable widgets.dart';
 import '../../utils/status.dart';
 
 class SignUp extends ConsumerStatefulWidget {
+  static const route = 'signup';
   const SignUp({
     Key? key,
   }) : super(key: key);
@@ -72,12 +73,12 @@ class _SignUpState extends ConsumerState<SignUp> {
                     child: CountryCodePicker(
                       padding: const EdgeInsets.all(2),
                       onChanged: (val) {
-                        // signInController.countryCode =
-                        //     val.dialCode ?? '';
+                        signUpController.countryCode =
+                            val.dialCode ?? '';
                       },
                       onInit: (val) {
-                        // signInController.countryCode =
-                        //     val?.dialCode ?? '';
+                        signUpController.countryCode =
+                            val?.dialCode ?? '';
                       },
                       countryFilter: [
                         'UA',
@@ -106,7 +107,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                     child: TextFormField(
                       autofocus: true,
                       onChanged: (val) {
-                        //signInController.phoneNumber = val;
+                        signUpController.phoneNumber = val;
                       },
                       keyboardType: TextInputType.number,
                       style: const TextStyle(
@@ -129,21 +130,17 @@ class _SignUpState extends ConsumerState<SignUp> {
               // if its from sign up
 
               //user needs to accept the privacy policy
+              await signUpController.verifyPhoneNumber(context: context);
 
-                // if (signUpController.otpStatus != Status.loading) {
-                //   await signUpController.verifyPhoneNumber(
-                //       context: context);
-                // } else {
-                //   showToast(signUpController.otpStatus);
-                // }
 
-              Navigator.pushNamed(context, OtpScreen.route);
+
+
 
 
             },
             child:
     (
-                signUpController.otpStatus != Status.loading
+        signUpController.otpStatus != Status.loading
             )
                ?
             Text('Enter',

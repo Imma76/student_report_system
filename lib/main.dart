@@ -6,6 +6,10 @@ import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/routes/routes.dart';
 import 'package:report_system/src/view/onboarding.dart';
 
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+
 Future<void> main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -34,12 +38,17 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     final appThemeProvider= ref.watch(themeProvider);
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       routes: routes,
+
+      navigatorObservers: [BotToastNavigatorObserver()],
 
       title: 'Flutter Demo',
       theme: appThemeProvider.isDark? appThemeProvider.darkTheme:appThemeProvider.lightTheme,
       home:  OnBoardingPage(),
+        builder: BotToastInit(),
+
     );
   }
 }
