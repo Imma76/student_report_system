@@ -10,6 +10,7 @@ class CentralState extends ChangeNotifier{
   bool isUserPresent = false;
   bool isAppLoading=false;
   bool isPhoneVerified=false;
+  bool? isFirstTime = true;
 
 
   void setFirstTime()async{
@@ -19,12 +20,15 @@ class CentralState extends ChangeNotifier{
 
   getIsUserFirstTime()async{
     final prefs = await SharedPreferences.getInstance();
-    
-    return prefs.getBool("isFirstTime");
+
+    isFirstTime = prefs.getBool("isFirstTime")?? true;
+    notifyListeners();
   }
 
 
-  void initializeApp(){
+  void initializeApp()async{
+    await getIsUserFirstTime();
+
     FirebaseAuth.instance.authStateChanges().listen((User? firebaseUser) async {
       if (firebaseUser != null) {
         isAppLoading = true;

@@ -7,6 +7,7 @@ import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/routes/routes.dart';
 import 'package:report_system/src/view/home/bottom_bar.dart';
 import 'package:report_system/src/view/onboarding.dart';
+import 'package:report_system/src/view/welcome_screen.dart';
 
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -80,6 +81,8 @@ class _NavigatorAppState extends ConsumerState<NavigatorApp> {
 
           if(centralProvider.isUserPresent){
             return BottomNavBar();
+          }else if (!centralProvider!.isFirstTime!){
+            return WelcomePage();
           }else{
             return OnBoardingPage();
           }
