@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:report_system/src/controllers/user_controller.dart';
+import 'package:report_system/src/models/user.dart';
+import 'package:report_system/src/servicees/user_service.dart';
 import 'package:report_system/src/utils/status.dart';
 import 'package:report_system/src/view/authentication/sign_up.dart';
 import 'package:report_system/src/view/home/bottom_bar.dart';
@@ -9,8 +12,11 @@ import '../utils/error_codes.dart';
 import '../utils/reusable widgets.dart';
 import '../view/authentication/otp_screen.dart';
 
+final userService = UserService();
 class SignUpController extends ChangeNotifier{
   Status otpStatus = Status.notStarted;
+  // final userController= UserController();
+
   String phoneNumber = '';
   User? user;
   Status loginStatus = Status.notStarted;
@@ -115,6 +121,7 @@ class SignUpController extends ChangeNotifier{
       }
     }
   }
+
   static Future _onSignInCompletedPhoneVerif(User user,
       {bool byPassEmailVerification = false}) async {
     //by pass this check and then run the app
@@ -122,7 +129,15 @@ class SignUpController extends ChangeNotifier{
     if (user.phoneNumber == null || user.phoneNumber == '') {
       navigatorKey.currentState!.pushNamed(SignUp.route);
     } else {
-      navigatorKey.currentState!.pushNamed(BottomNavBar.route);
+      final check = await userService.checkIfUserExists(user.phoneNumber.toString());
+      if(check){
+        navigatorKey.currentState!.pushNamed(BottomNavBar.route);
+      }else{
+        UserModel userModel = UserModel(regNo: '',email: '',mobile: user.phoneNumber,userId: user.uid);
+        await userService.createUser(userModel);
+        navigatorKey.currentState!.pushNamed(BottomNavBar.route);
+      }
+
       // print(user.email);
       // if (user.email != null) {
       //   int _response =

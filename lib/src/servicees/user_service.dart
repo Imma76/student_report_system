@@ -7,7 +7,7 @@ class UserService{
   final collection =  Collections();
   Future<bool> createUser(UserModel userModel) async{
     try{
-      final response = await collection.userCollection.add(userModel.toJson());
+      final response = await collection.userCollection.doc(userModel.userId).set(userModel.toJson());
       return true;
     }catch(e){
       print(e.toString());
@@ -15,7 +15,7 @@ class UserService{
     }
   }
 
-  Future checkIfUserExists(String number)async{
+  Future<bool> checkIfUserExists(String number)async{
     try{
       final response = await collection.userCollection.where("mobile",isEqualTo: number).get();
       if(response.docs.isNotEmpty){
