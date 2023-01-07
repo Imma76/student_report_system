@@ -62,7 +62,7 @@ class ImageController extends ChangeNotifier{
     List<String> urlList = [];
     if(imageFiles.isNotEmpty){
       for(var imageFile in imageFiles){
-        String url  = await ImageService.storeImage(imageFile, File(imageFile.));
+      //  String url  = await ImageService.storeImage(imageFile, File(imageFile.));
       }
     }
   }

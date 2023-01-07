@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/colors.dart';
+import 'package:uuid/uuid.dart';
 
 
 class Settings extends ConsumerStatefulWidget {
@@ -54,7 +55,7 @@ class _SettingsState extends ConsumerState<Settings> {
           SettingsTab(settingIcon: Icons.settings_outlined, settingsName: 'Settings',appTheme: apptheme,),
           Gap(20),
           SettingsTab(settingIcon: Icons.logout, settingsName: 'Sign out',appTheme: apptheme,onTap: (){
-            centralProvider.logOut();
+             centralProvider.logOut();
           },),
 
 

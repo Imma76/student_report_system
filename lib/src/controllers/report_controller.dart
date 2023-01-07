@@ -40,8 +40,8 @@ class ReportController extends ChangeNotifier{
 
   Future submitReport()async{
 
-    Reports reportModel = Reports(audioUrls: );
-    bool submit = await reportService.createReport(reportModel);
+    // Reports reportModel = Reports(audioUrls: );
+    // bool submit = await reportService.createReport(reportModel);
   }
 
 }
