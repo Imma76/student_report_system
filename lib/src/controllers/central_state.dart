@@ -2,12 +2,27 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:report_system/main.dart';
 import 'package:report_system/src/view/onboarding.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class CentralState extends ChangeNotifier{
   User? user;
   bool isUserPresent = false;
   bool isAppLoading=false;
   bool isPhoneVerified=false;
+
+
+  void setFirstTime()async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("isFirstTime", false);
+  }
+
+  getIsUserFirstTime()async{
+    final prefs = await SharedPreferences.getInstance();
+    
+    return prefs.getBool("isFirstTime");
+  }
+
 
   void initializeApp(){
     FirebaseAuth.instance.authStateChanges().listen((User? firebaseUser) async {

@@ -46,6 +46,7 @@ dependencies:
   file_picker:
   google_fonts:
   percent_indicator:
+  shared_preferences:
   liquid_progress_indicator:
 
     #firebase packages
