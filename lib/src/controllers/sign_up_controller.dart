@@ -65,6 +65,7 @@ class SignUpController extends ChangeNotifier{
           phoneNumber: _phone.trim(),
           codeAutoRetrievalTimeout: (String verId) {
             verificationCode = verId;
+            otpStatus = Status.failed;
             notifyListeners();
           },
           codeSent: (String verId, [int? forceCodeResend]) async {
