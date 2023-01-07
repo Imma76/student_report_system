@@ -6,8 +6,9 @@ class Reports{
   List<String?>? imageUrls;
   List<String?>? videoUrls;
   List<String?>? audioUrls;
+  bool? isAnonymous;
 
-  Reports({this.audioUrls,this.imageUrls,this.name,this.regNo,this.report,this.videoUrls, this.reportStatus});
+  Reports({this.audioUrls,this.isAnonymous,this.imageUrls,this.name,this.regNo,this.report,this.videoUrls, this.reportStatus});
 
 
   Reports.fromJson(Map<String, dynamic> data){
@@ -18,6 +19,7 @@ class Reports{
     imageUrls = data['imageUrls'];
     videoUrls = data['videoUrls'];
     audioUrls = data['audioUrls'];
+    isAnonymous = data['isAnonymous'];
 
   }
 
@@ -30,6 +32,8 @@ class Reports{
     data['imageUrls'] = imageUrls;
     data['videoUrls']= videoUrls;
     data['audioUrls'] = audioUrls;
+    data['isAnonymous'] = isAnonymous;
+    return data;
   }
 
 }
