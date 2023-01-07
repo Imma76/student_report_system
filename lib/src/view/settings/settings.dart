@@ -40,7 +40,7 @@ class _SettingsState extends ConsumerState<Settings> {
                 Gap(20),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Settings',style:apptheme.textStyle.copyWith(fontSize: 25,fontWeight: FontWeight.bold),),
+                  child: Text('Settings',style:apptheme.textStyle.copyWith(fontSize: 25,fontWeight: FontWeight.bold, color: Colors.white),),
                 ),
                 Gap(20),
               ],
