@@ -3,7 +3,7 @@ import 'package:report_system/src/collections/collections.dart';
 
 class UserService{
   final collection =  Collections();
-  Future createUser() async{
+  Future createUser(Userus) async{
     final response = await collection.userCollection.add();
   }
 }

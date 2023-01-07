@@ -1,11 +1,11 @@
-class User{
+class UserModel{
    String? name;
    String? mobile;
    String? userId;
    String? email;
    String? regNo;
 
-  User({this.regNo,this.name,this.email,this.mobile,this.userId});
+  UserModel({this.regNo,this.name,this.email,this.mobile,this.userId});
 
   fromJson(Map<String, dynamic> data){
     name = data['name'];
