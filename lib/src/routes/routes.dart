@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:report_system/main.dart';
 import 'package:report_system/src/view/authentication/otp_screen.dart';
 import 'package:report_system/src/view/authentication/sign_up.dart';
 import 'package:report_system/src/view/home/bottom_bar.dart';
@@ -18,5 +19,6 @@ Map<String,WidgetBuilder> routes ={
   OtpScreen.route:(BuildContext context)=>OtpScreen(),
   SignUp.route:(BuildContext context)=> SignUp(),
   OnBoardingPage.route:(BuildContext context)=> OnBoardingPage(),
-  WelcomePage.route:(BuildContext context)=> WelcomePage()
+  WelcomePage.route:(BuildContext context)=> WelcomePage(),
+  NavigatorApp.route:(BuildContext context)=>NavigatorApp(),
 };

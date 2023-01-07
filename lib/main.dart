@@ -58,6 +58,7 @@ class _MyAppState extends ConsumerState<MyApp> {
 }
 
 class NavigatorApp extends ConsumerStatefulWidget {
+  static const route = 'navigator_app';
   const NavigatorApp({
     Key? key,
   }) : super(key: key);
@@ -77,7 +78,7 @@ class _NavigatorAppState extends ConsumerState<NavigatorApp> {
   @override
   Widget build(BuildContext context) {
     final centralProvider= ref.watch(centralStateProvider);
-    print('lll${centralProvider.isUserPresent}');
+    print('lll${centralProvider.isFirstTime}');
 
           if(centralProvider.isUserPresent){
             return BottomNavBar();
