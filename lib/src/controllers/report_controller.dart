@@ -6,6 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:report_system/src/controllers/image_controller.dart';
+import 'package:report_system/src/models/report.dart';
+
+import '../servicees/report_service.dart';
 
 
 class ReportController extends ChangeNotifier{
@@ -15,6 +18,12 @@ class ReportController extends ChangeNotifier{
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController currentLevelController = TextEditingController();
+  ReportService reportService = ReportService();
+  List<String> audioUrls = [];
+  List<String> imageUrls = [];
+  List<String> videoUrls = [];
+
+
 
   changeReportVisibility(bool newValue){
     isAnonymous = newValue;
@@ -30,7 +39,9 @@ class ReportController extends ChangeNotifier{
 
 
   Future submitReport()async{
-    
+
+    Reports reportModel = Reports(audioUrls: );
+    bool submit = await reportService.createReport(reportModel);
   }
 
 }

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/colors.dart';
 
+import '../../controllers/image_controller.dart';
 import '../../utils/reusable widgets.dart';
 
 
@@ -55,7 +56,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 Row(
                   children: [
                     MediaPicker(onTap: (){
-                       reportController.pickImage();
+                      imageController.pickImage();
                     },),
                     Expanded(
                       child: Container(
@@ -64,7 +65,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
 
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: reportController.imageFiles.length,
+                            itemCount: imageController.imageFiles.length,
                             itemBuilder: (context,index){
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -72,13 +73,13 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                               children: [
                                 GestureDetector(
                                     onTap:(){
-                                reportController.imageFiles.removeAt(index);
+                                      imageController.imageFiles.removeAt(index);
                                 setState(() {
 
                                 });
                                 },
                                     child: Icon(Icons.cancel,size: 10,)),
-                                Container(height: 50, width:50,child: Image.file(reportController.imageFiles[index]),),
+                                Container(height: 50, width:50,child: Image.file( imageController.imageFiles[index]),),
                               ],
                             ),
                           );
@@ -93,7 +94,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 Row(
                   children: [
                     MediaPicker(onTap: (){
-                      reportController.pickVideos();
+                      imageController.pickVideos();
                     },
                     ),
                     Expanded(
@@ -103,7 +104,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
 
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: reportController.videoFiles.length,
+                            itemCount:  imageController.videoFiles.length,
                             itemBuilder: (context,index){
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -111,13 +112,13 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                                   children: [
                                     GestureDetector(
                                         onTap:(){
-                                          reportController.videoFiles.removeAt(index);
+                                          imageController.videoFiles.removeAt(index);
                                           setState(() {
 
                                           });
                                         },
                                         child: Icon(Icons.cancel,size: 10,)),
-                                    Container(height: 50, width:50,child: Image.file(reportController.videoFiles[index]),),
+                                    Container(height: 50, width:50,child: Image.file( imageController.videoFiles[index]),),
                                   ],
                                 ),
                               );
@@ -132,7 +133,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 Row(
                   children: [
                     MediaPicker(onTap: (){
-                      reportController.pickAudios();
+                      imageController.pickAudios();
                     },),
                     Expanded(
                       child: Container(
@@ -141,7 +142,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
 
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: reportController.audioFiles.length,
+                            itemCount:  imageController.audioFiles.length,
                             itemBuilder: (context,index){
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -149,13 +150,13 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                                   children: [
                                     GestureDetector(
                                         onTap:(){
-                                          reportController.audioFiles.removeAt(index);
+                                          imageController.audioFiles.removeAt(index);
                                           setState(() {
 
                                           });
                                         },
                                         child: Icon(Icons.cancel,size: 10,)),
-                                    Container(height: 50, width:50,child: Image.file(reportController.audioFiles[index]),),
+                                    Container(height: 50, width:50,child: Image.file( imageController.audioFiles[index]),),
                                   ],
                                 ),
                               );

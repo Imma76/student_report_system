@@ -4,6 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../servicees/image_service.dart';
+
 class ImageController extends ChangeNotifier{
 
   List<File> audioFiles = [];
@@ -54,6 +56,14 @@ class ImageController extends ChangeNotifier{
       notifyListeners();
     } else {
       // User canceled the picker
+    }
+  }
+  void uploadImage()async{
+    List<String> urlList = [];
+    if(imageFiles.isNotEmpty){
+      for(var imageFile in imageFiles){
+        String url  = await ImageService.storeImage(imageFile, File(imageFile.));
+      }
     }
   }
 }

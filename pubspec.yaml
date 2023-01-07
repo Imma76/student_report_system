@@ -45,6 +45,7 @@ dependencies:
   bot_toast:
   file_picker:
   google_fonts:
+  uuid:
   percent_indicator:
   shared_preferences:
   liquid_progress_indicator:
