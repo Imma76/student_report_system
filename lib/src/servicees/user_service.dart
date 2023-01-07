@@ -13,6 +13,19 @@ class UserService{
       print(e.toString());
       return false;
     }
+  }
+
+  Future checkIfUserExists(String number)async{
+    try{
+      final response = await collection.userCollection.where("mobile",isEqualTo: number).get();
+      if(response.docs.isNotEmpty){
+        return true;
+      }
+      return false;
+    }catch(e){
+      print(e.toString());
+      return false;
+    }
 
 
   }
