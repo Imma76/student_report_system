@@ -9,6 +9,11 @@ import 'package:image_picker/image_picker.dart';
 
 class ReportController extends ChangeNotifier{
   bool isAnonymous = true;
+  TextEditingController abuseExplanationController = TextEditingController();
+  TextEditingController regNoController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController currentLevelController = TextEditingController();
   final _picker = ImagePicker();
   changeReportVisibility(bool newValue){
     isAnonymous = newValue;
@@ -19,14 +24,7 @@ class ReportController extends ChangeNotifier{
   List<File> videoFiles = [];
 
   void pickImage ()async{
-    // FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true,type: FileType.image);
-    //
-    // if (result != null) {
-    //   imageFiles = result.paths.map((path) => File(path.toString())).toList();
-    //   notifyListeners();
-    // } else {
-    //   // User canceled the picker
-    // }
+
     try {
       print('ksjshdhgd');
       final pickedImageFiles = await _picker.pickMultiImage(
@@ -69,5 +67,11 @@ class ReportController extends ChangeNotifier{
     } else {
       // User canceled the picker
     }
+  }
+  bool validateMedia(){
+    if(imageFiles.isEmpty && videoFiles.isEmpty && audioFiles.isEmpty){
+      return false;
+    }
+    return true;
   }
 }
