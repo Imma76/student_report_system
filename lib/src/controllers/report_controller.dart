@@ -74,4 +74,10 @@ class ReportController extends ChangeNotifier{
     }
     return true;
   }
+
+
+  Future submitReport()async{
+    
+  }
+
 }

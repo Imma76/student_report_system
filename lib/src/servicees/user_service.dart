@@ -4,10 +4,10 @@ import 'package:report_system/src/collections/collections.dart';
 import '../models/user.dart';
 
 class UserService{
-  final collection =  Collections();
+
   Future<bool> createUser(UserModel userModel) async{
     try{
-      final response = await collection.userCollection.doc(userModel.userId).set(userModel.toJson());
+      final response = await Collections.userCollection.doc(userModel.userId).set(userModel.toJson());
       return true;
     }catch(e){
       print(e.toString());
@@ -17,7 +17,7 @@ class UserService{
 
   Future<bool> checkIfUserExists(String number)async{
     try{
-      final response = await collection.userCollection.where("mobile",isEqualTo: number).get();
+      final response = await Collections.userCollection.where("mobile",isEqualTo: number).get();
       if(response.docs.isNotEmpty){
         return true;
       }
