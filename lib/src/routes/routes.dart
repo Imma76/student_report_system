@@ -8,6 +8,7 @@ import 'package:report_system/src/view/home/home.dart';
 import 'package:report_system/src/view/onboarding.dart';
 import 'package:report_system/src/view/reports/report_form.dart';
 import 'package:report_system/src/view/settings/settings.dart';
+import 'package:report_system/src/view/welcome_screen.dart';
 
 Map<String,WidgetBuilder> routes ={
   HomePage.route:(BuildContext context)=>const HomePage(),
@@ -16,5 +17,6 @@ Map<String,WidgetBuilder> routes ={
   ReportForm.route:(BuildContext context)=> ReportForm(),
   OtpScreen.route:(BuildContext context)=>OtpScreen(),
   SignUp.route:(BuildContext context)=> SignUp(),
-  OnBoardingPage.route:(BuildContext context)=> OnBoardingPage()
+  OnBoardingPage.route:(BuildContext context)=> OnBoardingPage(),
+  WelcomePage.route:(BuildContext context)=> WelcomePage()
 };
