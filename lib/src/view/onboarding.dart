@@ -4,6 +4,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:report_system/src/view/authentication/sign_up.dart';
 
 class OnBoardingPage extends StatefulWidget {
+  static const route = 'onboarding';
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
 }

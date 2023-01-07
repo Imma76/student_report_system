@@ -76,11 +76,15 @@ class _NavigatorAppState extends ConsumerState<NavigatorApp> {
   @override
   Widget build(BuildContext context) {
     final centralProvider= ref.watch(centralStateProvider);
-    print(centralProvider.isUserPresent);
-    if(centralProvider.isUserPresent){
-      return BottomNavBar();
-    }else{
-      return OnBoardingPage();
-    }
+    print('lll${centralProvider.isUserPresent}');
+    return Consumer(
+        builder: (context, widget,ref){
+          if(centralProvider.isUserPresent){
+            return BottomNavBar();
+          }else{
+            return OnBoardingPage();
+          }
+    });
+
   }
 }

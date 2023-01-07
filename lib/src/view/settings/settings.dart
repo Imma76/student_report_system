@@ -18,7 +18,8 @@ class Settings extends ConsumerStatefulWidget {
 class _SettingsState extends ConsumerState<Settings> {
   @override
   Widget build(BuildContext context) {
-    final apptheme = ref.read(themeProvider);
+    final apptheme = ref.watch(themeProvider);
+    final centralProvider= ref.watch(centralStateProvider);
     return Scaffold(
 
       //backgroundColor: Colors.red,
@@ -51,6 +52,10 @@ class _SettingsState extends ConsumerState<Settings> {
           SettingsTab(settingIcon: Icons.person_outline,settingsName: 'Profile',appTheme: apptheme,),
           Gap(20),
           SettingsTab(settingIcon: Icons.settings_outlined, settingsName: 'Settings',appTheme: apptheme,),
+          Gap(20),
+          SettingsTab(settingIcon: Icons.logout, settingsName: 'Sign out',appTheme: apptheme,onTap: (){
+            centralProvider.logOut();
+          },),
 
 
         ],
@@ -62,13 +67,14 @@ class _SettingsState extends ConsumerState<Settings> {
 class SettingsTab extends StatelessWidget {
   final String settingsName;
   final IconData settingIcon;
+  final Function()? onTap;
   final appTheme;
   const SettingsTab({
-    Key? key,required this.settingIcon,required this.settingsName,this.appTheme
+    Key? key,required this.settingIcon,required this.settingsName,this.appTheme,this.onTap
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  ListTile(title: Text(settingsName), trailing: Icon(Icons.arrow_forward_ios_rounded),leading: Icon(settingIcon),);
+    return  ListTile(title: Text(settingsName), trailing: Icon(Icons.arrow_forward_ios_rounded),leading: Icon(settingIcon),onTap: onTap,);
   }
 }
