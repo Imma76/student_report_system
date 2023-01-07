@@ -57,3 +57,6 @@ class ImageController extends ChangeNotifier{
     }
   }
 }
+
+
+ImageController imageController = ImageController();

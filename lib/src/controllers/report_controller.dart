@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:report_system/src/controllers/image_controller.dart';
 
 
 class ReportController extends ChangeNotifier{
@@ -21,7 +22,7 @@ class ReportController extends ChangeNotifier{
   }
 
   bool validateMedia(){
-    if(imageFiles.isEmpty && videoFiles.isEmpty && audioFiles.isEmpty){
+    if(imageController.imageFiles.isEmpty && imageController.videoFiles.isEmpty && imageController.audioFiles.isEmpty){
       return false;
     }
     return true;
@@ -29,7 +30,7 @@ class ReportController extends ChangeNotifier{
 
 
   Future submitReport()async{
-
+    
   }
 
 }
