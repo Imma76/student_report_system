@@ -7,13 +7,13 @@ class UserModel{
 
   UserModel({this.regNo,this.name,this.email,this.mobile,this.userId});
 
-  fromJson(Map<String, dynamic> data){
+   fromJson(Map<String, dynamic> data){
     name = data['name'];
     mobile = data['mobile'];
     email = data['email'];
     regNo= data['regNo'];
   }
-  toJson(){
+   toJson(){
     Map<String,dynamic> data={};
     data['regNo']= regNo;
     data['mobile']= mobile;
