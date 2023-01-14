@@ -10,12 +10,19 @@ class ImageService{
 
 
   static Future<String> storeImage(File image, )async{
+    print('kkkkkkkhere');
     final name = uuid.v4();
+    try{
+      final upload = await FirebaseStorage.instance.ref('images/').child(name).putFile(image);
 
-    final upload = await FirebaseStorage.instance.ref('images/').child(name).putFile(image);
+      final url = await upload.ref.getDownloadURL();
+      return url;
+    }catch(e){
+      print(e.toString());
+      return '';
 
-    final url = await upload.ref.getDownloadURL();
-    return url;
+    }
+
 
   }
   static Future<String> storeVideo(File image, )async{

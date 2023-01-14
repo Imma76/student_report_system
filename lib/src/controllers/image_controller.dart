@@ -63,8 +63,10 @@ class ImageController extends ChangeNotifier{
     }
   }
   Future uploadImage()async{
+    print('upload');
 
     if(imageFiles.isNotEmpty){
+      print('not empty');
       for(var imageFile in imageFiles){
         String url  = await ImageService.storeImage(imageFile);
         imageUrlList.add(url);
@@ -100,4 +102,3 @@ class ImageController extends ChangeNotifier{
 }
 
 
-ImageController imageController = ImageController();

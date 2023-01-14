@@ -7,7 +7,7 @@ class UserModel{
 
   UserModel({this.regNo,this.name,this.email,this.mobile,this.userId});
 
-   fromJson(Map<String, dynamic> data){
+  UserModel.fromJson(Map<String, dynamic> data){
     name = data['name'];
     mobile = data['mobile'];
     email = data['email'];

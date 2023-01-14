@@ -1,16 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:report_system/main.dart';
+import 'package:report_system/src/models/user.dart';
 import 'package:report_system/src/view/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
 class CentralState extends ChangeNotifier{
   User? user;
+  UserModel? userModel;
   bool isUserPresent = false;
   bool isAppLoading=false;
   bool isPhoneVerified=false;
   bool? isFirstTime = true;
+
+  void userData(UserModel newUserModel){
+    userModel= newUserModel;
+    notifyListeners();
+  }
 
 
   void setFirstTime()async{

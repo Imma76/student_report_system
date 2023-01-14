@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/colors.dart';
 
-import '../../controllers/image_controller.dart';
 import '../../utils/reusable widgets.dart';
 
 
@@ -29,10 +28,11 @@ class _ReportFormState extends ConsumerState<ReportForm> {
   Widget build(BuildContext context) {
     final appTheme = ref.watch(themeProvider);
     final reportController = ref.watch(reportProvider);
+    final imageController = ref.watch(imageProvider);
     return SafeArea(
-      child: Scaffold(
+      child:  Scaffold(
 
-        body:Padding(
+        body: reportController.load?Center(child: CircularProgressIndicator(),): Padding(
           padding: const EdgeInsets.only(left:12.0,right: 12),
           child: SingleChildScrollView(
             child: Column(
@@ -67,6 +67,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                             scrollDirection: Axis.horizontal,
                             itemCount: imageController.imageFiles.length,
                             itemBuilder: (context,index){
+                              print( imageController.imageFiles);
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -188,7 +189,9 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 ),
               ),
               Gap(30),
-              FlatButton(onPressed: (){},
+              FlatButton(onPressed: (){
+                reportController.submitReport(imageController);
+              },
                 color: primaryColor,
                 height: 50,
                 minWidth: double.infinity,

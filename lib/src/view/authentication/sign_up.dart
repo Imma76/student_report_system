@@ -30,11 +30,11 @@ class _SignUpState extends ConsumerState<SignUp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final signUpController = ref.read(signUpPovider);
+    final signUpController = ref.read(signUpProvider);
   }
   @override
   Widget build(BuildContext context) {
-    final signUpController = ref.watch(signUpPovider);
+    final signUpController = ref.watch(signUpProvider);
     final appProvider= ref.watch(themeProvider);
     return Scaffold(
       body: Column(

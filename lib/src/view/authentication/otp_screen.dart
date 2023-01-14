@@ -30,7 +30,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    final signUpController = ref.watch(signUpPovider);
+    final signUpController = ref.watch(signUpProvider);
     final appProvider= ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.transparent,elevation: 0.0,leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){
