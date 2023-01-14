@@ -53,7 +53,7 @@ class ReportController extends ChangeNotifier{
       name:nameController.text,
       regNo: regNoController.text,
       report: abuseExplanationController.text,
-      isAnonymous: isAnonymous
+      isAnonymous: isAnonymous,
     );
     bool submit = await reportService.createReport(reportModel);
     load = false;
