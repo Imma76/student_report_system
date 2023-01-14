@@ -14,7 +14,24 @@ class ImageService{
 
     final upload = await FirebaseStorage.instance.ref('images/').child(name).putFile(image);
 
-    final url = await FirebaseStorage.instance.ref('images/').child(name).getDownloadURL();
+    final url = await upload.ref.getDownloadURL();
+    return url;
+
+  }
+  static Future<String> storeVideo(File image, )async{
+    final name = uuid.v4();
+
+    final upload = await FirebaseStorage.instance.ref('videos/').child(name).putFile(image);
+
+    final url = await FirebaseStorage.instance.ref('videos/').child(name).getDownloadURL();
+    return url;
+  }
+  static Future<String> storeAudio(File image, )async{
+    final name = uuid.v4();
+
+    final upload = await FirebaseStorage.instance.ref('audios/').child(name).putFile(image);
+
+    final url = await FirebaseStorage.instance.ref('audios/').child(name).getDownloadURL();
     return url;
   }
 }

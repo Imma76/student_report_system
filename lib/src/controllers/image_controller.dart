@@ -11,6 +11,10 @@ class ImageController extends ChangeNotifier{
   List<File> audioFiles = [];
   List<File> imageFiles= List<File>.empty(growable: true);
   List<File> videoFiles = [];
+  List<String> imageUrlList = [];
+  List<String> audioUrlList = [];
+  List<String> videoUrlList = [];
+
   final _picker = ImagePicker();
 
   void pickImage ()async{
@@ -58,13 +62,40 @@ class ImageController extends ChangeNotifier{
       // User canceled the picker
     }
   }
-  void uploadImage()async{
-    List<String> urlList = [];
+  Future uploadImage()async{
+
     if(imageFiles.isNotEmpty){
       for(var imageFile in imageFiles){
-      //  String url  = await ImageService.storeImage(imageFile, File(imageFile.));
+        String url  = await ImageService.storeImage(imageFile);
+        imageUrlList.add(url);
       }
     }
+  }
+  Future uploadVideo()async{
+
+    if(videoFiles.isNotEmpty){
+      for(var imageFile in imageFiles){
+        String url  = await ImageService.storeVideo(imageFile);
+        videoUrlList.add(url);
+      }
+    }
+  }
+  Future uploadAudio()async{
+
+    if(videoFiles.isNotEmpty){
+      for(var imageFile in imageFiles){
+        String url  = await ImageService.storeAudio(imageFile);
+        audioUrlList.add(url);
+      }
+    }
+  }
+  void clearList(){
+    imageFiles.clear();
+    videoFiles.clear();
+    audioFiles.clear();
+    imageUrlList.clear();
+    audioUrlList.clear();
+    videoUrlList.clear();
   }
 }
 

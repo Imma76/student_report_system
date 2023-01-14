@@ -42,7 +42,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
               Center(child: Text('Abuse Form',style: appTheme.textStyle,)),
               Gap(30),
               TextField(
-
+                controller: reportController.abuseExplanationController,
                 maxLines: 5,
                 decoration: InputDecoration(
                   enabledBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
@@ -177,13 +177,13 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 visible: !reportController.isAnonymous,
                 child: Column(
                   children: [
-                    TextFieldWidget(hintText: 'email',),
+                    TextFieldWidget(hintText: 'email',textController: reportController.emailController,),
                     Gap(10),
-                    TextFieldWidget(hintText: 'regNo',),
+                    TextFieldWidget(hintText: 'regNo',textController: reportController.regNoController,),
                     Gap(10),
-                    TextFieldWidget(hintText: 'name',),
+                    TextFieldWidget(hintText: 'name',textController: reportController.nameController,),
                     Gap(10),
-                    TextFieldWidget(hintText: 'current level',),
+                    TextFieldWidget(hintText: 'current level',textController: reportController.currentLevelController,),
                   ],
                 ),
               ),

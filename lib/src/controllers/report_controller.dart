@@ -39,9 +39,11 @@ class ReportController extends ChangeNotifier{
 
 
   Future submitReport()async{
-
-    // Reports reportModel = Reports(audioUrls: );
-    // bool submit = await reportService.createReport(reportModel);
+    await imageController.uploadAudio();
+    await imageController.uploadImage();
+    await imageController.uploadVideo();
+    Reports reportModel = Reports(audioUrls:imageController.audioUrlList, imageUrls: imageController.imageUrlList, videoUrls: imageController.videoUrlList,  );
+    bool submit = await reportService.createReport(reportModel);
   }
 
 }
