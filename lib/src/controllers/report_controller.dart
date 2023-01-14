@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:report_system/main.dart';
 import 'package:report_system/src/controllers/home_controller.dart';
 import 'package:report_system/src/controllers/image_controller.dart';
 import 'package:report_system/src/models/report.dart';
@@ -63,6 +64,7 @@ class ReportController extends ChangeNotifier {
       report: abuseExplanationController.text,
       isAnonymous: isAnonymous,
       email: homeController.userModel?.email,
+      userId: centralState.user!.uid
     );
     bool submit = await reportService.createReport(reportModel);
     load = false;
