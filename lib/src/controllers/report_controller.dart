@@ -22,6 +22,7 @@ class ReportController extends ChangeNotifier{
   List<String> audioUrls = [];
   List<String> imageUrls = [];
   List<String> videoUrls = [];
+  bool load = false;
 
 
 
@@ -39,11 +40,24 @@ class ReportController extends ChangeNotifier{
 
 
   Future submitReport()async{
+    load = true;
+    notifyListeners();
+
     await imageController.uploadAudio();
     await imageController.uploadImage();
     await imageController.uploadVideo();
-    Reports reportModel = Reports(audioUrls:imageController.audioUrlList, imageUrls: imageController.imageUrlList, videoUrls: imageController.videoUrlList,  );
+    Reports reportModel = Reports(
+      audioUrls:imageController.audioUrlList,
+      imageUrls: imageController.imageUrlList,
+      videoUrls: imageController.videoUrlList,
+      name:nameController.text,
+      regNo: regNoController.text,
+      report: abuseExplanationController.text,
+      isAnonymous: isAnonymous
+    );
     bool submit = await reportService.createReport(reportModel);
+    load = false;
+    notifyListeners();
   }
 
 }
