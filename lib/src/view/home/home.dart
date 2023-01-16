@@ -11,6 +11,7 @@ import 'package:report_system/src/utils/app_theme.dart';
 import 'package:report_system/src/utils/colors.dart';
 import 'package:report_system/src/view/reports/report_form.dart';
 
+import '../../models/report.dart';
 import '../../utils/reusable widgets.dart';
 
 
@@ -141,6 +142,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           itemCount: data.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
+                            final report=Reports.fromJson(data[index].data() as Map<String,dynamic>);
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

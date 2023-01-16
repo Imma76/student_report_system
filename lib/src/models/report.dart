@@ -19,13 +19,13 @@ class Reports{
     regNo  = data['regNo'];
     report = data['report'];
     reportStatus = data['reportStatus'];
-    imageUrls = data['imageUrls'];
-    videoUrls = data['videoUrls'];
-    audioUrls = data['audioUrls'];
+    imageUrls = List.from(data['imageUrls']);
+    videoUrls = List.from(data['videoUrls']);
+    audioUrls = List.from(data['audioUrls']);
     isAnonymous = data['isAnonymous'];
     email=data['email'];
     userId= data['userId'];
-    createdAt=data['createdAt'];
+    createdAt= DateTime.parse(data['createdAt'].toDate().toString());
 
   }
 

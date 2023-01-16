@@ -32,7 +32,7 @@ class HomeController extends ChangeNotifier {
 
   }
   Stream<QuerySnapshot> reportStream(){
-    return Collections.reportCollection.snapshots();
+    return Collections.reportCollection.where("userId",isEqualTo: centralState.user!.uid).snapshots();
   }
 
   bool isAnonymous = true;
