@@ -48,6 +48,7 @@ dependencies:
   uuid:
   percent_indicator:
   shared_preferences:
+
   liquid_progress_indicator:
 
     #firebase packages
