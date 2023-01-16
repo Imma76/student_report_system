@@ -41,6 +41,8 @@ class Reports{
     data['isAnonymous'] = isAnonymous;
     data['email']= email;
     data['userId'] = userId;
+    data['createdAt']= createdAt;
+    data['reportStatus']=reportStatus;
     return data;
   }
 
