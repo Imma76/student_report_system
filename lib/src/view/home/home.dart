@@ -56,7 +56,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         body: StreamBuilder<QuerySnapshot>(
           stream: homeController.reportStream(),
           builder: (context, snapshot) {
-            final data = snapshot.data!.docs;
+
            // if(snapshot.hasData) {
             if(snapshot.connectionState == ConnectionState.waiting){
               return Center(child: CircularProgressIndicator(),);
@@ -65,6 +65,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             if(snapshot.hasError){
               return Center(child:Text('Unable to load data'));
             }
+            final data = snapshot.data!.docs;
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
