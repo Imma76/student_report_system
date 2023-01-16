@@ -15,6 +15,7 @@ import '../collections/collections.dart';
 import '../models/user.dart';
 import '../servicees/report_service.dart';
 import '../servicees/user_service.dart';
+import '../utils/report_status.dart';
 
 
 class HomeController extends ChangeNotifier {
@@ -84,7 +85,8 @@ class HomeController extends ChangeNotifier {
       isAnonymous: isAnonymous,
       email: userModel?.email,
       createdAt: DateTime.now(),
-      userId: centralState.user!.uid
+      userId: centralState.user!.uid,
+      reportStatus: ReportStatus.submitted,
     );
     bool submit = await reportService.createReport(reportModel);
     load = false;

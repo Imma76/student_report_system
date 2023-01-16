@@ -68,7 +68,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 200,
+                      height: 250,
                       width: double.infinity,
                       child: Column(
                       //  crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +108,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                               Gap(40),
                               Column(
                                 children: [
-                                  Text('40'),
+                                  Text('${data.length.toString()}'),
                                   Gap(5),
                                   Text('Reports Submitted',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
                                   Gap(12),
