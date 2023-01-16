@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   introduction_screen: ^3.1.1
   image_picker:
+  jiffy:
   country_code_picker: ^2.0.2
   gap: ^2.0.1
   flutter_riverpod:

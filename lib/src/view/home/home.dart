@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -143,16 +144,28 @@ class _HomePageState extends ConsumerState<HomePage> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             final report=Reports.fromJson(data[index].data() as Map<String,dynamic>);
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text('Report submitted',
-                                    style: appTheme.textStyle,),
-                                ), Icon(Icons.report_outlined),
-                              ],
-                            );
+                            return ListTile(title: Text(report.report.toString()),subtitle: Text(
+                                Jiffy(report.createdAt.toString()).format("MMMM do yyyy, h:mm:ss a")
+
+
+                            ),trailing: Container(
+                              child:Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(report.reportStatus.toString()),
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.circular(5)),),);
+                            //   Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     Padding(
+                            //       padding: const EdgeInsets.all(8.0),
+                            //       child: Text('Report submitted',
+                            //         style: appTheme.textStyle,),
+                            //     ), Icon(Icons.report_outlined),
+                            //   ],
+                            // );
                           }
                       ),
                     ),
