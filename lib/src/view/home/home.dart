@@ -29,14 +29,14 @@ class _HomePageState extends ConsumerState<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final reportController = ref.read(reportProvider);
+    final reportController = ref.read(homeProvider);
   }
 
   @override
   Widget build(BuildContext context) {
     final appTheme = ref.watch(themeProvider);
 
-    final reportController = ref.watch(reportProvider);
+    final homeController = ref.watch(homeProvider);
     return SafeArea(
       child: Scaffold(
         floatingActionButton: GestureDetector(
@@ -70,61 +70,59 @@ class _HomePageState extends ConsumerState<HomePage> {
                     Container(
                       height: 200,
                       width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:15.0),
-                        child: Column(
-                        //  crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Text('REPORTS SUMMARY',
-                                style: appTheme.textStyle.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,),),
-                            ),
-                            Gap(20),
+                      child: Column(
+                      //  crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text('REPORTS SUMMARY',
+                              style: appTheme.textStyle.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,),),
+                          ),
+                          Gap(20),
 
-                            Row(
-                              crossAxisAlignment:CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  radius:75,
-                                  child: LiquidCircularProgressIndicator(
-                                    value: data.length/100, // Defaults to 0.5.
-                                    valueColor: AlwaysStoppedAnimation(Colors.black), // Defaults to the current Theme's accentColor.
-                                    backgroundColor: Colors.white, // Defaults to the current Theme's backgroundColor.
-                                    borderColor: primaryColor,
-                                    borderWidth: 5.0,
-                                    direction: Axis.vertical, // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
-                                    center: Column(
-                                      mainAxisAlignment:MainAxisAlignment.center,
-                                      children: [
-                                        Text('${data.length.toString()}',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
-                                        Gap(5),
-                                        Text(' REPORTS SUBMITTED ',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9),),
-                                      ],
-                                    ),
+                          Row(
+                            crossAxisAlignment:CrossAxisAlignment.center,
+                            children: [
+                              Gap(50),
+                              CircleAvatar(
+                                radius:75,
+                                child: LiquidCircularProgressIndicator(
+                                  value: data.length/100, // Defaults to 0.5.
+                                  valueColor: AlwaysStoppedAnimation(Colors.black), // Defaults to the current Theme's accentColor.
+                                  backgroundColor: Colors.white, // Defaults to the current Theme's backgroundColor.
+                                  borderColor: primaryColor,
+                                  borderWidth: 5.0,
+                                  direction: Axis.vertical, // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
+                                  center: Column(
+                                    mainAxisAlignment:MainAxisAlignment.center,
+                                    children: [
+                                      Text('${data.length.toString()}',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
+                                      Gap(5),
+                                      Text(' REPORTS SUBMITTED ',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9),),
+                                    ],
                                   ),
                                 ),
-                                Gap(40),
-                                Column(
-                                  children: [
-                                    Text('40'),
-                                    Gap(5),
-                                    Text('Reports Submitted',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
-                                    Gap(12),
-                                    Text('20'),
-                                    Gap(5),
-                                    Text('Reports In Review',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
-                                  ],
-                                ),
-
+                              ),
+                              Gap(40),
+                              Column(
+                                children: [
+                                  Text('40'),
+                                  Gap(5),
+                                  Text('Reports Submitted',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
+                                  Gap(12),
+                                  Text('20'),
+                                  Gap(5),
+                                  Text('Reports In Review',style: appTheme.textStyle.copyWith(color:Colors.black,fontSize: 9)),
                                 ],
-                            ),
+                              ),
+
+                              ],
+                          ),
 
 
-                          ],
-                        ),
+                        ],
                       ),
                       decoration: BoxDecoration(color: white,
                           borderRadius: BorderRadius.only(bottomLeft: Radius

@@ -22,12 +22,12 @@ class _ReportFormState extends ConsumerState<ReportForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final reportController = ref.read(reportProvider);
+    final reportController = ref.read(homeProvider);
   }
   @override
   Widget build(BuildContext context) {
     final appTheme = ref.watch(themeProvider);
-    final reportController = ref.watch(reportProvider);
+    final reportController = ref.watch(homeProvider);
     final imageController = ref.watch(imageProvider);
     return SafeArea(
       child:  Scaffold(
