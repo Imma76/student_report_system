@@ -94,6 +94,7 @@ class HomeController extends ChangeNotifier {
     imageController.clearList();
     clearTextController();
     notifyListeners();
+    Navigator.pop(navigatorKey!.currentContext!);
   }
 
 }
