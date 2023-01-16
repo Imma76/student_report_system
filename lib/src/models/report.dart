@@ -9,8 +9,9 @@ class Reports{
   String? email;
   bool? isAnonymous;
   String? userId;
+  DateTime? createdAt;
 
-  Reports({this.audioUrls,this.isAnonymous,this.userId,this.email,this.imageUrls,this.name,this.regNo,this.report,this.videoUrls, this.reportStatus});
+  Reports({this.audioUrls,this.isAnonymous,this.userId,this.email,this.imageUrls,this.name,this.regNo,this.report,this.videoUrls,this.createdAt, this.reportStatus});
 
 
   Reports.fromJson(Map<String, dynamic> data){
@@ -24,6 +25,7 @@ class Reports{
     isAnonymous = data['isAnonymous'];
     email=data['email'];
     userId= data['userId'];
+    createdAt=data['createdAt'];
 
   }
 
