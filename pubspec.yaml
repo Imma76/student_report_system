@@ -48,6 +48,7 @@ dependencies:
   google_fonts:
   uuid:
   percent_indicator:
+  rflutter_alert:
   shared_preferences:
 
   liquid_progress_indicator:

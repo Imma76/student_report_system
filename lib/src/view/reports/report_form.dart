@@ -190,6 +190,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
               ),
               Gap(30),
               FlatButton(onPressed: (){
+
                 reportController.submitReport(imageController);
               },
                 color: primaryColor,
