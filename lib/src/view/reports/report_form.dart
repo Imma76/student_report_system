@@ -1,8 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/colors.dart';
+import 'package:report_system/src/utils/loader.dart';
 
 import '../../utils/reusable widgets.dart';
 
@@ -26,20 +28,20 @@ class _ReportFormState extends ConsumerState<ReportForm> {
   }
   @override
   Widget build(BuildContext context) {
-    final appTheme = ref.watch(themeProvider);
+
     final reportController = ref.watch(homeProvider);
     final imageController = ref.watch(imageProvider);
     return SafeArea(
       child:  Scaffold(
 
-        body: reportController.load?Center(child: CircularProgressIndicator(),): Padding(
+        body: reportController.load?Indicator2(): Padding(
           padding: const EdgeInsets.only(left:12.0,right: 12),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               Gap(30),
-              Center(child: Text('Abuse Form',style: appTheme.textStyle,)),
+              Center(child: Text('Report Form',style:GoogleFonts.lora(),)),
               Gap(30),
               TextField(
                 controller: reportController.abuseExplanationController,
@@ -51,7 +53,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
               ),),
                 Gap(10),
-                Text('Attach photos',style: appTheme.textStyle),
+                Text('Attach photos',style: GoogleFonts.lora()),
                 Gap(10),
                 Row(
                   children: [
@@ -90,7 +92,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                   ],
                 ),
                 Gap(10),
-                Text('Attach videos',style: appTheme.textStyle),
+                Text('Attach videos',style: GoogleFonts.lora()),
                 Gap(5),
                 Row(
                   children: [
@@ -129,7 +131,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                   ],
                 ),
                 Gap(10),
-                Text('Attach audios',style: appTheme.textStyle),
+                Text('Attach audios',style: GoogleFonts.lora()),
                 Gap(5),
                 Row(
                   children: [
@@ -168,10 +170,10 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 ),
                 Row(
                 children: [
-                  Text('Send report anonymously', style: appTheme.textStyle,),Spacer(),
+                  Text('Send report anonymously', style: GoogleFonts.lora(),),Spacer(),
                   Switch(value: reportController.isAnonymous, onChanged: (value){
                     reportController.changeReportVisibility(value);
-                  }),
+                  },activeColor: primaryColor,),
                 ],
               ),
                 Visibility(
@@ -189,14 +191,16 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                 ),
               ),
               Gap(30),
-              FlatButton(onPressed: (){
+              ElevatedButton(onPressed: (){
 
                 reportController.submitReport(imageController);
               },
-                color: primaryColor,
-                height: 50,
-                minWidth: double.infinity,
-                child: Text('Submit',style: appTheme.textStyle.copyWith(color: Colors.white),), ),
+                style: ElevatedButton.styleFrom(primary: primaryColor,
+                  fixedSize: const Size(double.infinity,50),
+                 minimumSize:  const Size(double.infinity,50),
+                 // minWidth: double.infinity,
+                  ),
+                child: Text('Submit',style: GoogleFonts.lora(color: Colors.white),), ),
 
                 Gap(20),
             ],),

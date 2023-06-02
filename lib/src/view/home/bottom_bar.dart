@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:report_system/src/view/home/home.dart';
 import 'package:report_system/src/view/settings/settings.dart';
 
+import '../../utils/app_theme.dart';
+import '../../utils/colors.dart';
+
 
 class BottomNavBar extends ConsumerStatefulWidget {
   static const route = '/bottomavbar';
@@ -28,14 +31,16 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
 
       bottomNavigationBar:BottomNavigationBar(
         currentIndex: currentIndex,
+
+
         onTap: (index){
           setState(() {
             currentIndex= index;
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.settings),label: '')
+          BottomNavigationBarItem(icon: Icon(Icons.home,color:currentIndex == 0? primaryColor:Colors.grey),label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.settings,color:currentIndex == 1? primaryColor:Colors.grey),label: '')
         ],
       ),
     ));

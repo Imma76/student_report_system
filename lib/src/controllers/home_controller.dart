@@ -85,7 +85,7 @@ class HomeController extends ChangeNotifier {
       videoUrls: imageController.videoUrlList,
       name:nameController.text,
       regNo: regNoController.text,
-      report: abuseExplanationController.text,
+      report: abuseExplanationController.text.trim(),
       isAnonymous: isAnonymous,
       email: userModel?.email,
       createdAt: DateTime.now(),
@@ -100,7 +100,7 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
     Navigator.pop(navigatorKey!.currentContext!);
 
-    Alert(context: navigatorKey!.currentContext!, title: "",image: Icon(Icons.check), desc: "Report has been subbmitted", buttons: [
+    Alert(context: navigatorKey!.currentContext!, title: "",image: Icon(Icons.check), desc: "Report has been submitted", buttons: [
       DialogButton(
         child: Text(
           "OK",

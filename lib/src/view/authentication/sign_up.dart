@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/view/authentication/otp_screen.dart';
 
@@ -35,7 +36,7 @@ class _SignUpState extends ConsumerState<SignUp> {
   @override
   Widget build(BuildContext context) {
     final signUpController = ref.watch(signUpProvider);
-    final appProvider= ref.watch(themeProvider);
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -80,14 +81,14 @@ class _SignUpState extends ConsumerState<SignUp> {
                         signUpController.countryCode =
                             val?.dialCode ?? '';
                       },
-                      countryFilter: [
+                      countryFilter: const [
                         'UA',
                         'NG',
                         'IN',
                         'US',
                       ],
-                      initialSelection: 'UA',
-                      favorite: const ['+380', 'Uk'],
+                      initialSelection: 'NG',
+                      favorite: const ['+234', 'NG'],
                       showCountryOnly: false,
                       showOnlyCountryWhenClosed: false,
                       alignLeft: false,
@@ -124,7 +125,7 @@ class _SignUpState extends ConsumerState<SignUp> {
               ),
             ),
           ),
-          Gap(50),
+          const Gap(50),
           ElevatedButton(
             onPressed: () async {
               // if its from sign up
@@ -138,13 +139,19 @@ class _SignUpState extends ConsumerState<SignUp> {
 
 
             },
+            style: ElevatedButton.styleFrom(
+                primary: primaryColor,
+
+                minimumSize: const Size(130, 55),
+                maximumSize: const Size(130, 55),
+                fixedSize: const Size(130, 55)),
             child:
     (
         signUpController.otpStatus != Status.loading
             )
                ?
             Text('Enter',
-                style:appProvider.textStyle.copyWith(fontWeight: FontWeight.bold,),
+                style:GoogleFonts.lora(fontWeight: FontWeight.bold,),
                 textAlign: TextAlign.center)
                 : const SizedBox(
                 height: 20,
@@ -155,12 +162,6 @@ class _SignUpState extends ConsumerState<SignUp> {
                   //  color: AppTheme.white,
                   ),
                 )),
-            style: ElevatedButton.styleFrom(
-                primary: primaryColor,
-
-                minimumSize: Size(130, 55),
-                maximumSize: Size(130, 55),
-                fixedSize: Size(130, 55)),
           ),
         ],
       ),

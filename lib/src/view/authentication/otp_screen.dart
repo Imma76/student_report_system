@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/view/home/bottom_bar.dart';
 
+import '../../utils/app_theme.dart';
 import '../../utils/colors.dart';
 import '../../utils/status.dart';
 
@@ -31,7 +33,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     final signUpController = ref.watch(signUpProvider);
-    final appProvider= ref.watch(themeProvider);
+
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.transparent,elevation: 0.0,leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),onPressed: (){
         Navigator.pop(context);
@@ -40,7 +42,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Input the otp sent to your mobile number',style:appProvider.textStyle.copyWith(fontSize:15)),
+          Text('Input the otp sent to your mobile number',style:GoogleFonts.lora(fontSize:15)),
           Gap(30),
           Center(
             child: OTPField(
@@ -78,7 +80,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
             )
                 ?
             Text('Verify',
-                style:appProvider.textStyle.copyWith(fontWeight: FontWeight.bold,),
+                style:GoogleFonts.lora(fontWeight: FontWeight.bold,),
                 textAlign: TextAlign.center)
                 : const SizedBox(
                 height: 20,

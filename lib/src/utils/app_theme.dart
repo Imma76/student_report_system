@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:report_system/src/utils/colors.dart';
 
 
-class AppTheme extends ChangeNotifier {
-  TextStyle textStyle = GoogleFonts.lora();
+class AppTheme  {
+  static TextStyle textStyle = GoogleFonts.lora();
 
 
 
@@ -52,7 +52,7 @@ accentColor: primaryColor,
   ThemeData get  appTheme => lightTheme;
   void changeAppTheme(){
     isDark = !isDark;
-    notifyListeners();
+
 
   }
 

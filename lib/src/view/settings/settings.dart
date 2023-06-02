@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/utils/colors.dart';
 import 'package:uuid/uuid.dart';
@@ -19,7 +20,7 @@ class Settings extends ConsumerStatefulWidget {
 class _SettingsState extends ConsumerState<Settings> {
   @override
   Widget build(BuildContext context) {
-    final apptheme = ref.watch(themeProvider);
+
     final centralProvider= ref.watch(centralStateProvider);
     return Scaffold(
 
@@ -42,7 +43,7 @@ class _SettingsState extends ConsumerState<Settings> {
                 Gap(20),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Settings',style:apptheme.textStyle.copyWith(fontSize: 25,fontWeight: FontWeight.bold, color: Colors.white),),
+                  child: Text('Settings',style:GoogleFonts.lora(fontSize: 25,fontWeight: FontWeight.bold, color: Colors.white),),
                 ),
                 Gap(20),
               ],
@@ -50,11 +51,11 @@ class _SettingsState extends ConsumerState<Settings> {
           ),
           Gap(30),
 
-          SettingsTab(settingIcon: Icons.person_outline,settingsName: 'Profile',appTheme: apptheme,),
+          SettingsTab(settingIcon: Icons.person_outline,settingsName: 'Profile',),
           Gap(20),
-          SettingsTab(settingIcon: Icons.settings_outlined, settingsName: 'Settings',appTheme: apptheme,),
+          SettingsTab(settingIcon: Icons.settings_outlined, settingsName: 'Settings',),
           Gap(20),
-          SettingsTab(settingIcon: Icons.logout, settingsName: 'Sign out',appTheme: apptheme,onTap: (){
+          SettingsTab(settingIcon: Icons.logout, settingsName: 'Sign out',onTap: (){
              centralProvider.logOut();
           },),
 
@@ -69,9 +70,9 @@ class SettingsTab extends StatelessWidget {
   final String settingsName;
   final IconData settingIcon;
   final Function()? onTap;
-  final appTheme;
+
   const SettingsTab({
-    Key? key,required this.settingIcon,required this.settingsName,this.appTheme,this.onTap
+    Key? key,required this.settingIcon,required this.settingsName,this.onTap
   }) : super(key: key);
 
   @override

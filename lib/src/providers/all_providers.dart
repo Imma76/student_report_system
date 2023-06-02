@@ -9,7 +9,7 @@ import 'package:report_system/src/controllers/home_controller.dart';
 import '../controllers/image_controller.dart';
 import '../utils/app_theme.dart';
 //
- final themeProvider= ChangeNotifierProvider<AppTheme>((ref)=>AppTheme());
+ //final themeProvider= ChangeNotifierProvider<AppTheme>((ref)=>AppTheme());
  final homeProvider = ChangeNotifierProvider<HomeController>((ref) => HomeController());
  final signUpProvider = ChangeNotifierProvider<SignUpController>((ref) => SignUpController());
  final centralStateProvider= ChangeNotifierProvider<CentralState>((ref) => CentralState());

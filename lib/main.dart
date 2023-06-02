@@ -6,6 +6,7 @@ import 'package:report_system/src/controllers/central_state.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/routes/routes.dart';
 import 'package:report_system/src/view/home/bottom_bar.dart';
+import 'package:report_system/src/view/home/home.dart';
 import 'package:report_system/src/view/onboarding.dart';
 import 'package:report_system/src/view/welcome_screen.dart';
 
@@ -36,11 +37,11 @@ class _MyAppState extends ConsumerState<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final appThemeProvider= ref.read(themeProvider);
+
   }
   @override
   Widget build(BuildContext context) {
-    final appThemeProvider= ref.watch(themeProvider);
+
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
@@ -49,7 +50,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       navigatorObservers: [BotToastNavigatorObserver()],
 
       title: 'Flutter Demo',
-      theme: appThemeProvider.isDark? appThemeProvider.darkTheme:appThemeProvider.lightTheme,
+    //  theme: appThemeProvider.isDark? appThemeProvider.darkTheme:appThemeProvider.lightTheme,
       home: NavigatorApp(),
         builder: BotToastInit(),
 
@@ -81,7 +82,7 @@ class _NavigatorAppState extends ConsumerState<NavigatorApp> {
     print('lll${centralProvider.isFirstTime}');
 
           if(centralProvider.isUserPresent){
-            return BottomNavBar();
+            return HomePage();
           }else if (!centralProvider!.isFirstTime!){
             return WelcomePage();
           }else{
