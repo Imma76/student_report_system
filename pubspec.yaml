@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   introduction_screen: ^3.1.1
   image_picker:
+  firebase_in_app_messaging: ^0.4.0+1
+  firebase_messaging: ^11.2.0
+  flutter_local_notifications: ^8.1.0
   jiffy:
   country_code_picker:
   flutter_spinkit:
@@ -60,6 +63,7 @@ dependencies:
   firebase_auth:
   firebase_core:
   square_percent_indicater: ^0.1.0
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:

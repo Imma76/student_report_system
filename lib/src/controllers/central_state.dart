@@ -74,3 +74,4 @@ class CentralState extends ChangeNotifier{
 }
 
 
+final CentralState centralState = CentralState();
