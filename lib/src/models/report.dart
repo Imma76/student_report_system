@@ -7,15 +7,19 @@ class Reports{
   List<String?>? videoUrls;
   List<String?>? audioUrls;
   String? email;
+  String? phone;
+  String? fcmToken;
   bool? isAnonymous;
   String? userId;
   DateTime? createdAt;
 
-  Reports({this.audioUrls,this.isAnonymous,this.userId,this.email,this.imageUrls,this.name,this.regNo,this.report,this.videoUrls,this.createdAt, this.reportStatus});
+  Reports({this.audioUrls,this.fcmToken
+    ,this.isAnonymous,this.phone,this.userId,this.email,this.imageUrls,this.name,this.regNo,this.report,this.videoUrls,this.createdAt, this.reportStatus});
 
 
   Reports.fromJson(Map<String, dynamic> data){
     name = data['name'];
+    fcmToken = data['fcmToken'];
     regNo  = data['regNo'];
     report = data['report'];
     reportStatus = data['reportStatus'];
@@ -24,6 +28,7 @@ class Reports{
     audioUrls = List.from(data['audioUrls']);
     isAnonymous = data['isAnonymous'];
     email=data['email'];
+    phone = data['phone'];
     userId= data['userId'];
     createdAt= DateTime.parse(data['createdAt'].toDate().toString());
 
@@ -33,6 +38,8 @@ class Reports{
     Map<String, dynamic> data = {};
     data['name'] = name;
     data['regNo'] = regNo;
+
+    data['fcmToken'] = fcmToken;
     data['report'] = report;
     data['reportStatus'] = reportStatus;
     data['imageUrls'] = imageUrls;
@@ -40,6 +47,7 @@ class Reports{
     data['audioUrls'] = audioUrls;
     data['isAnonymous'] = isAnonymous;
     data['email']= email;
+    data['phone']= phone;
     data['userId'] = userId;
     data['createdAt']= createdAt;
     data['reportStatus']=reportStatus;

@@ -5,6 +5,7 @@ class UserModel{
    String? email;
    String? regNo;
 
+
   UserModel({this.regNo,this.name,this.email,this.mobile,this.userId});
 
   UserModel.fromJson(Map<String, dynamic> data){

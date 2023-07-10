@@ -33,24 +33,30 @@ class _ReportFormState extends ConsumerState<ReportForm> {
     final imageController = ref.watch(imageProvider);
     return SafeArea(
       child:  Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text('Report Form',style:GoogleFonts.lora(color: Colors.black),),
+            backgroundColor: Colors.transparent,elevation: 0,actions: [
+            IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon:Icon(Icons.close,color: Colors.black,))
+          ],),
 
-        body: reportController.load?Indicator2(): Padding(
+        body: reportController.load?const Indicator2(): Padding(
           padding: const EdgeInsets.only(left:12.0,right: 12),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              Gap(30),
-              Center(child: Text('Report Form',style:GoogleFonts.lora(),)),
-              Gap(30),
+              Gap(20),
               TextField(
                 controller: reportController.abuseExplanationController,
                 maxLines: 5,
                 decoration: InputDecoration(
-                  enabledBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
-                  focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+                  enabledBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor2)),
+                  focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: primaryColor2)),
                   hintText: 'Brief explanation of abuse',
-                border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+                border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor2)),
               ),),
                 Gap(10),
                 Text('Attach photos',style: GoogleFonts.lora()),
@@ -173,7 +179,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
                   Text('Send report anonymously', style: GoogleFonts.lora(),),Spacer(),
                   Switch(value: reportController.isAnonymous, onChanged: (value){
                     reportController.changeReportVisibility(value);
-                  },activeColor: primaryColor,),
+                  },activeColor: primaryColor2,),
                 ],
               ),
                 Visibility(
@@ -195,7 +201,7 @@ class _ReportFormState extends ConsumerState<ReportForm> {
 
                 reportController.submitReport(imageController);
               },
-                style: ElevatedButton.styleFrom(primary: primaryColor,
+                style: ElevatedButton.styleFrom(primary: primaryColor2,
                   fixedSize: const Size(double.infinity,50),
                  minimumSize:  const Size(double.infinity,50),
                  // minWidth: double.infinity,

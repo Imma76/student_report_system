@@ -36,9 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   introduction_screen: ^3.1.1
   image_picker:
-  firebase_in_app_messaging: ^0.4.0+1
-  firebase_messaging: ^11.2.0
-  flutter_local_notifications: ^8.1.0
+  firebase_in_app_messaging:
+  firebase_messaging:
+  flutter_local_notifications:
   jiffy:
   country_code_picker:
   flutter_spinkit:
@@ -60,7 +60,10 @@ dependencies:
     #firebase packages
   firebase_storage:
   cloud_firestore:
+  flutter_native_splash:
   firebase_auth:
+
+  flutter_launcher_icons:
   firebase_core:
   square_percent_indicater: ^0.1.0
   http: ^0.13.6
@@ -76,9 +79,15 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/report.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+dependency_overrides:
+  firebase_core_platform_interface: 4.5.1
 # The following section is specific to Flutter packages.
 flutter:
 

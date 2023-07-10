@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:report_system/src/providers/all_providers.dart';
 import 'package:report_system/src/view/authentication/otp_screen.dart';
 
+import '../../utils/app_theme.dart';
 import '../../utils/colors.dart';
 import '../../utils/reusable widgets.dart';
 import '../../utils/status.dart';
@@ -140,7 +141,7 @@ class _SignUpState extends ConsumerState<SignUp> {
 
             },
             style: ElevatedButton.styleFrom(
-                primary: primaryColor,
+                primary: primaryColor2,
 
                 minimumSize: const Size(130, 55),
                 maximumSize: const Size(130, 55),
@@ -153,13 +154,13 @@ class _SignUpState extends ConsumerState<SignUp> {
             Text('Enter',
                 style:GoogleFonts.lora(fontWeight: FontWeight.bold,),
                 textAlign: TextAlign.center)
-                : const SizedBox(
+                :  SizedBox(
                 height: 20,
                 width: 20,
                 child: Center(
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                  //  color: AppTheme.white,
+                    color: Colors.white,
                   ),
                 )),
           ),

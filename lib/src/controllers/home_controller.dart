@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/widgets.dart';
@@ -80,16 +81,21 @@ class HomeController extends ChangeNotifier {
     await imageController.uploadAudio();
     await imageController.uploadImage();
     await imageController.uploadVideo();
+
+    String? fcmToken = await FirebaseMessaging.instance.getToken();
     Reports reportModel = Reports(
       audioUrls:imageController.audioUrlList,
       imageUrls: imageController.imageUrlList,
       videoUrls: imageController.videoUrlList,
+
+      fcmToken: fcmToken,
       name:nameController.text,
       regNo: regNoController.text,
       report: abuseExplanationController.text.trim(),
       isAnonymous: isAnonymous,
       email: userModel?.email,
       createdAt: DateTime.now(),
+      phone: centralState.user!.phoneNumber,
       userId: centralState.user!.uid,
       reportStatus: ReportStatus.submitted,
     );
@@ -113,3 +119,4 @@ class HomeController extends ChangeNotifier {
   }
 
 }
+

@@ -20,7 +20,7 @@ class ImageController extends ChangeNotifier{
   void pickImage ()async{
 
     try {
-      print('ksjshdhgd');
+
       final pickedImageFiles = await _picker.pickMultiImage(
         // source: ImageSource.gallery,
       );

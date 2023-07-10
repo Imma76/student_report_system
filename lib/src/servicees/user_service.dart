@@ -22,14 +22,15 @@ class UserService{
     try{
       final response = await Collections.userCollection.where("mobile",isEqualTo: number).get();
       if(response.docs.isNotEmpty){
+
         return true;
       }
       return false;
+
     }catch(e){
       print(e.toString());
       return false;
     }
-
   }
   Future getCurrentUser()async{
     try{

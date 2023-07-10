@@ -1,24 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart'hide ModalBottomSheet;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:report_system/src/controllers/home_controller.dart';
 import 'package:report_system/src/providers/all_providers.dart';
-import 'package:report_system/src/utils/app_theme.dart';
 import 'package:report_system/src/utils/colors.dart';
 import 'package:report_system/src/utils/loader.dart';
 import 'package:report_system/src/view/reports/report_form.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:square_percent_indicater/square_percent_indicater.dart';
 
 import '../../models/report.dart';
-import '../../utils/report_status.dart';
-import '../../utils/reusable widgets.dart';
+import '../welcome_screen.dart';
 
 
 class HomePage extends ConsumerStatefulWidget {
@@ -45,9 +39,14 @@ class _HomePageState extends ConsumerState<HomePage> {
     final homeController = ref.watch(homeProvider);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: white,
-        appBar: AppBar(elevation: 0.0,backgroundColor: white,actions: [
-          IconButton(icon:const Icon(Icons.logout,color: Colors.grey, ),onPressed: (){},),
+       backgroundColor: Color(0xffE9EFF3),
+        appBar: AppBar(
+          leading: null,
+          elevation: 0.0,backgroundColor: Colors.transparent,actions: [
+          IconButton(icon:const Icon(Icons.logout,color: Colors.grey, ),onPressed: ()async{
+            await FirebaseAuth.instance.signOut();
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const WelcomePage()), (route) => false);
+          },),
         ],),
         floatingActionButton: GestureDetector(
           onTap: (){
@@ -59,8 +58,8 @@ class _HomePageState extends ConsumerState<HomePage> {
             });
           },
           child: Container(
-            padding: const EdgeInsets.all(10),decoration: BoxDecoration(color: primaryColor,borderRadius: BorderRadius.circular(20)),
-            child:  Text('Make a report',style: GoogleFonts.lora(color:white),),),
+            padding: const EdgeInsets.all(10),decoration: BoxDecoration(color: primaryColor2,borderRadius: BorderRadius.circular(20)),
+            child:  Text('New report',style: GoogleFonts.lora(color:white),),),
         ),
         body: StreamBuilder<QuerySnapshot>(
           stream: homeController.reportStream(),
@@ -68,7 +67,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             int reportsInReview = 0;
             int reportsSubmitted= 0;
             int reportsResolved = 0;
-
 
 
            // if(snapshot.hasData) {
@@ -80,6 +78,24 @@ class _HomePageState extends ConsumerState<HomePage> {
               return const Center(child:Text('Unable to load data'));
             }
             List<Reports> reports = snapshot.data!.docs.map((e)=>Reports.fromJson(e.data() as Map<String,dynamic>)).toList();
+
+            int reviewCount= 0;
+
+            int resolvedCount=0;
+            //    final report=Reports.fromJson(data[index].data() as Map<String,dynamic>);
+            for(var docData in reports){
+
+
+              if(docData.reportStatus
+                  =='In Review'){
+                reviewCount++;
+              }
+
+              if(docData.reportStatus=='Resolved'){
+                resolvedCount++;
+              }
+
+            }
             // for(var  report in reports){
             //   if(report.reportStatus == ReportStatus.inReview){
             //     reportsInReview++;
@@ -105,130 +121,101 @@ class _HomePageState extends ConsumerState<HomePage> {
                     //  crossAxisAlignment: CrossAxisAlignment.start,
                     //  mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Center(
-                        //   child: Text('REPORTS SUMMARY',
-                        //     style:GoogleFonts.lora(
-                        //       fontWeight: FontWeight.bold,
-                        //       color: Colors.black,),),
-                        // ),
-                        // const Gap(20),
+             const Gap(10),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child
+                              : Row(
+                            // scrollDirection: Axis.horizontal,
+                            // shrinkWrap: true,
+                            children: [
+                              Gap(10),
+                              Container(
+                                height: 150,
+                                width:300,
+                                padding: const EdgeInsets.only(right: 20,left: 20,bottom: 10),
 
-                        Row(
-                          crossAxisAlignment:CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                decoration:
+                                BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(3), boxShadow: const [
+                                  BoxShadow(
+                                    offset: Offset(0, 13),
+                                    blurRadius: 25,
+                                    color: Color.fromARGB(14, 14, 14, 0),
+                                  ),
+                                ],),
+                                child:Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Spacer(),
+                                    Image.asset("assets/report3.png",height: 30,width: 30,),
+                                    const Gap(10),
+                                    const Text('Total Reports',),
+                                    const Gap(5),
+                                    Text(reports.length.toString(),),
 
-                          children: [
-
-                            Column(
-                              children: [
-                                SquarePercentIndicator(
-                                  width:70,
-                                  height: 70,
-                                  startAngle: StartAngle.bottomRight,
-                                  reverse: true,
-                                  borderRadius: 12,
-                                  shadowWidth: 1.5,
-                                  progressWidth: 5,
-                                  shadowColor: Colors.grey,
-                                  progressColor: Colors.blue,
-                                  progress: reportsSubmitted/100,
-                                  child: Center(
-                                      child: Text(
-                                        "$reportsSubmitted",
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                                      )),
+                                  ],
                                 ),
-                                const Gap(10),
-                                Text('reports submitted',style:GoogleFonts.lora())
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                SquarePercentIndicator(
-                                  width:70,
-                                  height: 70,
-                                  startAngle: StartAngle.bottomRight,
-                                  reverse: true,
-                                  borderRadius: 12,
-                                  shadowWidth: 1.5,
-                                  progressWidth: 5,
-                                  shadowColor: Colors.grey,
-                                  progressColor: Colors.blue,
-                                  progress: reportsInReview/100,
-                                  child: Center(
-                                      child: Text(
-                                        "$reportsInReview",
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                                      )),
-                                ),
-                                const Gap(10),
-                                Text('under review',style:GoogleFonts.lora())
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                SquarePercentIndicator(
-                                  width:70,
-                                  height: 70,
-                                  startAngle: StartAngle.bottomRight,
-                                  reverse: true,
-                                  borderRadius: 12,
-                                  shadowWidth: 1.5,
-                                  progressWidth: 5,
-                                  shadowColor: Colors.grey,
-                                  progressColor: primaryColor,
-                                  progress: reportsResolved/100,
-                                  child: Center(
-                                      child: Text(
-                                        "$reportsResolved",
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                                      )),
-                                ),
-                                const Gap(10),
-                                Text('resolved reports',style:GoogleFonts.lora())
-                              ],
-                            )
-                            //const Gap(50),
-                            // CircleAvatar(
-                            //   radius:75,
-                            //   child: LiquidCircularProgressIndicator(
-                            //     value: data.length/100, // Defaults to 0.5.
-                            //     valueColor: const AlwaysStoppedAnimation(Colors.black), // Defaults to the current Theme's accentColor.
-                            //     backgroundColor: Colors.white, // Defaults to the current Theme's backgroundColor.
-                            //     borderColor: primaryColor,
-                            //     borderWidth: 5.0,
-                            //     direction: Axis.vertical, // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
-                            //     center: Column(
-                            //       mainAxisAlignment:MainAxisAlignment.center,
-                            //       children: [
-                            //         Text('${data.length.toString()}',style:GoogleFonts.lora(color:Colors.black,fontSize: 9)),
-                            //         const Gap(5),
-                            //         Text(' REPORTS SUBMITTED ',style: GoogleFonts.lora(color:Colors.black,fontSize: 9),),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
-                            //const Gap(40),
-                            // Column(
-                            //   children: [
-                            //     Text('${data.length.toString()}'),
-                            //     const Gap(5),
-                            //     Text('Reports Submitted',style:GoogleFonts.lora(color:Colors.black,fontSize: 9)),
-                            //     const Gap(12),
-                            //     const Text('20'),
-                            //     const Gap(5),
-                            //     Text('Reports In Review',style: GoogleFonts.lora(color:Colors.black,fontSize: 9)),
-                            //   ],
-                            // ),
+                              ),  const Gap(10),
+                              Container(
+                                height: 150,
+                                width:300,
+                                padding: const EdgeInsets.only(right: 20,left: 20,bottom: 10),
 
+                                decoration:
+                                BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(3), boxShadow: const [
+                                  BoxShadow(
+                                    offset: Offset(0, 13),
+                                    blurRadius: 25,
+                                    color: Color.fromARGB(14, 14, 14, 0),
+                                  ),
+                                ],),
+                                child:Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Spacer(),
+                                    Image.asset("assets/report3.png",height: 30,width: 30,),
+                                    const Gap(10),
+                                    const Text('Reports In Review',),
+                                    const Gap(5),
+                                    Text('$reviewCount',),
+
+                                  ],
+                                ),
+                              ),  const Gap(10),
+                              Container(
+                                height: 150,
+                                width:300,
+                                padding: const EdgeInsets.only(right: 20,left: 20,bottom: 10),
+
+                                decoration:
+                                BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(3), boxShadow: const [
+                                  BoxShadow(
+                                    offset: Offset(0, 13),
+                                    blurRadius: 25,
+                                    color: Color.fromARGB(14, 14, 14, 0),
+                                  ),
+                                ],),
+                                child:Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Spacer(),
+                                    Image.asset("assets/report3.png",height: 30,width: 30,),
+                                    const Gap(10),
+                                    const Text('Resolved Reports',),
+                                    const Gap(5),
+                                    Text('$resolvedCount',),
+
+                                  ],
+                                ),
+                              ),
                             ],
+                          ),
                         ),
-
 
                       ],
                     ),
 
-                    Gap(30),
+                    const Gap(30),
 
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -237,38 +224,63 @@ class _HomePageState extends ConsumerState<HomePage> {
                           itemCount: reports.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-print(reports[index].report!.trim().toString());
-                            return Container(
-                              height: 60,
-                              color: Colors.grey,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: ()async{
+                                  // await PushNotificationService.pushNotification(
+                                  //   title: 'Hello',
+                                  //   message: 'Hi',
+                                  //   fcmToken: 'c1nsFF0chEKQt-r0IUyLYr:APA91bH_KvAGs9-tnlukijm2YOKW-l_LdpwmExsHhrDM3SrfqnftyDIroJku-q-4IqhWbWNdwRpBgZThbkbsa2zSHNiRJqwXqvGPvNjYutt777uceRvTaF8dFpDltydeBg3v-iftDCX5'
+                                  //);
+                                },
+                                child: Container(
+                                  height: 60,
 
-                                       Text(reports[index].report!.trim().toString()),
-                                        Gap(10),
-                                        Text(
-                                              Jiffy(reports[index].createdAt.toString()).format("MMMM do yyyy, h:mm:a")),
+                                  decoration:const BoxDecoration( color: Colors.white, boxShadow: [
+                                    BoxShadow(
+                                      offset: Offset(0, 13),
+                                      blurRadius: 25,
+                                      color: Color.fromARGB(14, 14, 14, 0),
+                                    ),
+                                  ], ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+
+                                            SizedBox(
+                                              width:200,
+                                              child: Text(reports[index].report!.trim().toString(),style: GoogleFonts.lora(
+
+                                           ), overflow: TextOverflow.ellipsis,softWrap: true,),
+                                            ),
+                                            const Gap(10),
+                                            Text(
+                                                  Jiffy(reports[index].createdAt.toString()).format("MMMM do yyyy, h:mm:a")),
+                                          ],
+                                        ),
+                                    const Spacer(),
+
+                                    Container(
+                                      width: 90,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius: BorderRadius.circular(5)),
+                                      child:Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Center(child: Text(reports[index].reportStatus.toString())),
+                                      ),),
                                       ],
                                     ),
-                                Spacer(),
+                                  ),
 
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child:Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: Text(reports[index].reportStatus.toString()),
-                                  ),),
-                                  ],
                                 ),
                               ),
-
                             );
 
                             //   ListTile(title: Text(report.report.toString()),subtitle: Text(

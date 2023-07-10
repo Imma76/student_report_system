@@ -6,6 +6,7 @@ import 'package:report_system/src/servicees/user_service.dart';
 import 'package:report_system/src/utils/status.dart';
 import 'package:report_system/src/view/authentication/sign_up.dart';
 import 'package:report_system/src/view/home/bottom_bar.dart';
+import 'package:report_system/src/view/home/home.dart';
 
 import '../../main.dart';
 import '../utils/error_codes.dart';
@@ -30,7 +31,6 @@ class SignUpController extends ChangeNotifier{
     otp = val;
     notifyListeners();
   }
-
 
   void smsOTPSent(String verId, [int? forceCodeResend]) async {
     // await initSmsListener();
@@ -107,7 +107,6 @@ class SignUpController extends ChangeNotifier{
           },
         );
       } on FirebaseAuthException catch (e) {
-        print('heyyyy${e.toString()}');
         otpStatus = Status.failed;
         notifyListeners();
 
@@ -132,46 +131,12 @@ class SignUpController extends ChangeNotifier{
     } else {
       final check = await userService.checkIfUserExists(user.phoneNumber.toString());
       if(check){
-        navigatorKey.currentState!.pushNamed(BottomNavBar.route);
+        navigatorKey.currentState!.pushNamed(HomePage.route);
       }else{
         UserModel userModel = UserModel(regNo: '',email: '',mobile: user.phoneNumber,userId: user.uid);
         await userService.createUser(userModel);
-        navigatorKey.currentState!.pushNamed(BottomNavBar.route);
+        navigatorKey.currentState!.pushNamed(HomePage.route);
       }
-
-      // print(user.email);
-      // if (user.email != null) {
-      //   int _response =
-      //       await AdminApi().checkIfAdminIsLinkedToSalon(user.uid, user.email);
-      //   //checks here if user's salon already exists or not
-      //   if (_response == 1) {
-      //     // salons is already linked with admin
-
-      //     centralState.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-      //         Base.route, (Route<dynamic> route) => false);
-      //   } else {
-      //     // need to register salon
-      //     centralState.navigatorKey.currentState!
-      //         .pushNamed(SalonAndMasterSelectionPage.route);
-      //   }
-      // } else {
-      // print("omo na number be this oo");
-      // print(user.phoneNumber);
-      // Status _response = await AdminApi()
-      //     .checkIfAdminIsLinkedToSalonPhone(user.uid, user.phoneNumber);
-
-
-      //checks here if user's salon already exists or not
-      // if (_response == Status.success) {
-      //   // salons is already linked with admin
-      //
-      //   centralState.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-      //       Base.route, (Route<dynamic> route) => false);
-      // } else {
-      //   // need to register salon
-      //   centralState.navigatorKey.currentState!
-      //       .pushNamed(SalonAndMasterSelectionPage.route);
-      // }
     }
     // }
   }

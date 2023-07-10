@@ -1,5 +1,8 @@
 class ReportStatus{
-  static const String submitted='submitted';
-  static const String inReview='in review';
-  static const String resolved='resolved';
+  static String submitted = 'Submitted';
+  static String inReview = 'In Review';
+  static String resolved = 'Resolved';
+
+
+
 }

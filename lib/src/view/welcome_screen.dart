@@ -17,6 +17,7 @@ class WelcomePage extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset('assets/logo2.png', width: 200,height: 70,),Gap(100),
             InkWell(
               onTap: (){
                 Navigator.pushNamed(context, SignUp.route);
@@ -26,7 +27,7 @@ class WelcomePage extends StatelessWidget {
                 child: Container(
                   height: 60,
                   width: double.infinity,
-                  color:primaryColor,
+                  color:primaryColor2,
                   child: Center(child: Text('Sign up', style: GoogleFonts.lora(color: white, fontWeight: FontWeight.bold, fontSize: 18),)),
                 ),
               ),
@@ -44,7 +45,7 @@ class WelcomePage extends StatelessWidget {
 
                   decoration: BoxDecoration(
                     color:white,
-                    border:Border.all(color: primaryColor)
+                    border:Border.all(color: primaryColor2)
                   ),
                   child: Center(child: Text('Sign in', style: GoogleFonts.lora(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),)),
                 ),

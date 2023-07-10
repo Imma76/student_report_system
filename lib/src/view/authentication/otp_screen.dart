@@ -47,6 +47,7 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
           Center(
             child: OTPField(
               onChanged: signUpController.onOtpChange,
+
               onComplete: (e) {
                 signUpController.verifyPhoneNumber(context: context);
               },
@@ -88,11 +89,11 @@ class _OtpScreenState extends ConsumerState<OtpScreen> {
                 child: Center(
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    //  color: AppTheme.white,
+                      color: Colors.white,
                   ),
                 )),
             style: ElevatedButton.styleFrom(
-                primary: primaryColor,
+                primary: primaryColor2,
 
                 minimumSize: Size(130, 55),
                 maximumSize: Size(130, 55),
@@ -156,9 +157,9 @@ class _OTPFieldState extends State<OTPField> {
           fieldHeight: 40,
           fieldWidth: 34,
           activeFillColor: Colors.white,
-          inactiveColor: Theme.of(context).primaryColor,
-          selectedColor: Theme.of(context).primaryColor,
-          activeColor: Theme.of(context).primaryColor,
+          inactiveColor:primaryColor2,
+          selectedColor: primaryColor2,
+          activeColor:primaryColor2,
         ),
         animationDuration: const Duration(milliseconds: 300),
         backgroundColor: Colors.transparent,
